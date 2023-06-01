@@ -29,7 +29,7 @@ export const Signup = () => {
                             <input type="text" className="form-control rounded" placeholder="Gender" aria-label="Username" aria-describedby="basic-addon1" style={{maxWidth: "45%"}}/>
                             <input type="text" className="form-control rounded" placeholder="Otra Cosa" aria-label="Username" aria-describedby="basic-addon1" style={{maxWidth: "45%"}}/>
                         </div>
-                        <button className="btn btn-primary" style={{width: "100%"}}>Sign In</button>
+                        <button className="btn btn-primary" style={{width: "100%"}}>Join Us</button>
                     </div>
                 </div>
             </div>
