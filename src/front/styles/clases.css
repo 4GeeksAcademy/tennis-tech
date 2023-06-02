@@ -1,0 +1,26 @@
+.formulario{
+    margin-left: 10%;
+    margin-right: 55%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.inputs{
+    margin-left: 55%;
+    margin-right: 10%;
+    margin-top: -15%;
+    margin-bottom: 5%;
+
+}
+
+.comentarios{
+    margin-right: 30%;
+    margin-left: 30%;
+}
+
+.boton{
+    display:flex;
+    justify-content: center;
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
