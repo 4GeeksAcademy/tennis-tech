@@ -8,6 +8,23 @@ export const Home = () => {
 
 	return (
 		<>
+
+		<div className="home"> 
+			<form className="col g-3 cuadro text-center">
+  			<div className="col">
+    			<label for="inputState" className="form-label">Fecha</label>
+    				<select id="inputState" className="form-select">
+    				</select>
+  			</div>
+			  <div className="col">
+    			<label for="inputState" className="form-label hora">Hora</label>
+    				<select id="inputState" className="form-select hora">
+    				</select>
+  			</div>
+			  <button type="button" class="btn btn-primary">Reservar</button>
+			</form>
+			</div>
+
 			<div className="container">
 				<h1 className="text-center">Canchas</h1>
 				<div className="row my-5">
