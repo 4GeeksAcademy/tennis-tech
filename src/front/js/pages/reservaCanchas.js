@@ -8,50 +8,47 @@ export const Canchas = () => {
 
     return(
         <>
-        <h2 className='d-flex justify-content-center mt-3'>Reserva tu cancha</h2>
+        <div className='court'>
+
+            <h2 className='d-flex justify-content-center mt-3 text-white'>¡Reserva tu cancha!</h2>
+
         <div className='formulario'>
-        <div className="column g-3">
-        <div className="col">
-            <input type="text" className="form-control mb-4" placeholder="First name" aria-label="First name"/>
+        <div className="mb-3 flex-column fecha">
+            <label for="exampleFormControlInput1" className="form-label text-white"><strong>Fecha</strong></label>
+            <input type="email" className="form-control mb-4" id="exampleFormControlInput1" placeholder="date"/>
         </div>
-        <div className="col">
-            <input type="text" className="form-control" placeholder="Last name" aria-label="Last name"/>
-        </div>
-        </div>
-            <input type="text" className="form-control mb-4 mt-4" placeholder="Email" aria-label="Email"/>
+        <div className="mb-3 flex-column fecha">
+            <label for="exampleFormControlInput1" className="form-label mt-3 text-white"><strong>Hora</strong></label>
+            <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="hour"/>
         </div>
 
-        <div className='inputs d-flex flex-column flex-start'>
-        <div className="input-group mb-3">
-        <label for="formGroupExampleInput" className="form-label">Fecha</label>
-            <DatePicker/>
+        <div className="flex-column fecha mt-5">
+            <label for="inputState" className="form-label text-white"><strong>Players</strong></label>
+            <select id="inputState" className="form-select">
+                <option selected>Please select number of players</option>
+                <option>2</option>
+                <option>4</option>
+                <option>6</option>
+            </select>
         </div>
 
+<div className="flex-column fecha mt-5 mb-5">
+    <label for="inputState" className="form-label text-white"><strong>Cancha</strong></label>
+    <select id="inputState" className="form-select">
+        <option selected>Selecciona la cancha de tu preferencia</option>
+        <option>Concreto</option>
+        <option>Arcilla</option>
+        <option>Grama</option>
+    </select>
+</div>
 
-        <div className="input-group mb-3">
-            <input type="text" className="form-control" aria-label="Text input with segmented dropdown button"/>
-            <button type="button" className="btn btn-outline-secondary">Hour</button>
-            <button type="button" className="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-                <span className="visually-hidden">Toggle Dropdown</span>
-            </button>
-                <ul className="dropdown-menu dropdown-menu-end">
-                    Aqui va un calendario
-                </ul>
-        </div>
 
-        <div className="input-group">
-            <input type="text" className="form-control" aria-label="Text input with segmented dropdown button"/>
-            <button type="button" className="btn btn-outline-secondary">Players</button>
-            <button type="button" className="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-                <span className="visually-hidden">Toggle Dropdown</span>
-            </button>
-                <ul className="dropdown-menu dropdown-menu-end">
-                    <li><a className="dropdown-item" href="#">2</a></li>
-                    <li><a className="dropdown-item" href="#">4</a></li>
-                    <li><a className="dropdown-item" href="#">6</a></li>
-                </ul>
-        </div>
-        </div>
+<div className='boton'>
+<button type="button" className="btn btn-primary">Reservar</button>
+</div>
+
+</div>
+</div>
 
         
         </>
