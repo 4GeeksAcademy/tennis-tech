@@ -40,6 +40,26 @@ export const Profile = () =>{
                         </div>
                     </div>
 
+                </div><div className="row">
+                    <div className="col-4">
+                        <div className="input-group mb-3 flex-column">
+                            <label for="formFile" className="form-label">Date of Birth: </label>
+                            <input type="text" className="form-control" placeholder="Please insert their birthday" aria-label="Username" aria-describedby="basic-addon1" style={{width: "100%"}}/>
+                        </div>
+                    </div>
+                    <div className="col-4">
+                        <div className="input-group mb-3 flex-column">
+                            <label for="formFile" className="form-label">Category: </label>
+                            <input type="text" className="form-control" placeholder="Please insert their category" aria-label="Username" aria-describedby="basic-addon1" style={{width: "100%"}}/>
+                        </div>
+                    </div>
+                    <div className="col-4">
+                        <div className="input-group mb-3 flex-column">
+                            <label for="formFile" className="form-label">Gender: </label>
+                            <input type="text" className="form-control" placeholder="Please insert their gender" aria-label="Username" aria-describedby="basic-addon1" style={{width: "100%"}}/>
+                        </div>
+                    </div>
+
                 </div>
 
                 <div className="row">
