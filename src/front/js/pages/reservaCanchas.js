@@ -48,9 +48,7 @@ export const Canchas = () => {
 </div>
 
 </div>
-</div>
-
-        
+</div>  
         </>
     )
 }
