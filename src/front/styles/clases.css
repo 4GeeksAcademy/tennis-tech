@@ -1,15 +1,11 @@
-.formulario{
-    margin-left: 10%;
-    margin-right: 55%;
-    margin-top: 5%;
-    margin-bottom: 5%;
-}
 
-.inputs{
-    margin-left: 55%;
-    margin-right: 10%;
-    margin-top: -15%;
-    margin-bottom: 5%;
+.fecha{
+    display:flex;
+    justify-content: center;
+    margin-left: 250px;
+    margin-right: 250px;
+    padding-right: 80px;
+    height: 50px;
 
 }
 
