@@ -1,9 +1,10 @@
 import React from "react";
+import "../../styles/navbar.css";
 import { Link } from "react-router-dom";
 
 export const Navbar = () => {
 	return (
-		<nav className="navbar bg-light">
+		<nav className="navbar">
 			<div className="container">
 				<Link to="/" style={{textDecoration: "none"}}>
 					<span className="navbar-brand mb-0 h1"><i className="fa-solid fa-table-tennis-paddle-ball"></i></span>
