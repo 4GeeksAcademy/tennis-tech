@@ -9,7 +9,7 @@ export const Home = () => {
 	return (
 		<>
 			<div className="container">
-				<h1 className="text-center">Canchas</h1>
+
 				<div className="row my-5">
 					<div className="col-6">
 						<img src="https://civideportes.com.co/wp-content/uploads/2020/08/asphalt-tennis-court-5354328_640.jpg" alt="cancha de cemento azul" style={{maxWidth: "70%"}}/>
