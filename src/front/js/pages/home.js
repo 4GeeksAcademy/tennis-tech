@@ -26,7 +26,7 @@ export const Home = () => {
 			</form>
 			</div>
 
-			<div className="my-5 d-flex flex-row justify-content-around" style={{backgroundColor: "#EBCAA4"}}>
+			<div className="my-5 py-4 d-flex flex-row justify-content-around" style={{backgroundColor: "#EBCAA4"}}>
 				<TeacherCard
 					image="https://images.unsplash.com/photo-1605395630162-1c7cc7a34590?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8dGVubmlzJTIwcGxheWVyfGVufDB8fDB8fHwy&auto=format&fit=crop&w=500&q=60"
 				/>
