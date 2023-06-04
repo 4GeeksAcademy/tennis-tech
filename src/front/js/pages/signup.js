@@ -13,13 +13,13 @@ export const Signup = () => {
                             <input type="text" className="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1"/>
                         </div>
                         <div className="input-group mb-3">
-                            <input type="text" className="form-control" placeholder="Email" aria-label="Email" aria-describedby="basic-addon1"/>
+                            <input type="email" className="form-control" placeholder="Email" aria-label="Email" aria-describedby="basic-addon1"/>
                         </div>
                         <div className="input-group mb-3">
-                            <input type="text" className="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1"/>
+                            <input type="password" className="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1"/>
                         </div>
                         <div className="input-group mb-3">
-                            <input type="text" className="form-control" placeholder="Confirm Password" aria-label="Confirm Password" aria-describedby="basic-addon1"/>
+                            <input type="password" className="form-control" placeholder="Confirm Password" aria-label="Confirm Password" aria-describedby="basic-addon1"/>
                         </div>
                         <button className="btn btn-primary" style={{width: "100%"}}>Join Us</button>
                     </div>
