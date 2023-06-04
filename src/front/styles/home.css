@@ -9,3 +9,10 @@
     background-color: rgba(146, 235, 12, 0.731);
 }
 
+#canchas-home > .row > .col-6{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+

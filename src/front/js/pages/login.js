@@ -4,9 +4,9 @@ import React from "react";
 export const Login = () => {
     return(
         <>
-            <div className="container d-flex justify-content-center">
+            <div className="container position relative">
 
-                <div className="card my-2" style={{width: "500px", backgroundColor: "#74B72D"}}>
+                <div className="card position-absolute top-50 start-50 translate-middle" style={{width: "500px", backgroundColor: "#74B72D"}}>
                     <h2 className="card-header text-light text-center">Welcome!!</h2>
                     <div className="card-body">
                         <div className="input-group mb-3">
