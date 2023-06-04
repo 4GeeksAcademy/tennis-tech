@@ -29,7 +29,7 @@ export const Home = () => {
       	</div>
     	</div>
     	<div className="carousel-item">
-      		<img src="https://images.unsplash.com/photo-1592709823125-a191f07a2a5e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2913&q=80" className="d-block w-100" alt="..."/>
+      		<img src="https://images.unsplash.com/photo-1587683437362-da7775ffc532?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" className="d-block w-100" alt="..."/>
       	<div className="carousel-caption d-none d-md-block texto">
 		<Link to="/lessons" className="text-light">
         	<h2 className="text-white">¡Haz clic aquí para agendar una clase!</h2>
