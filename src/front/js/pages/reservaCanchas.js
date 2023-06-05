@@ -1,10 +1,12 @@
-import React from 'react'
+import React, {useState} from 'react'
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import "../../styles/canchas.css";
 
 
 export const Canchas = () => {
+
+    // const [canchas, setCanchas] = useState({})
 
     return(
         <>
@@ -15,11 +17,11 @@ export const Canchas = () => {
         <div className='formulario'>
         <div className="mb-3 flex-column fecha">
             <label for="exampleFormControlInput1" className="form-label text-white"><strong>Fecha</strong></label>
-            <input type="email" className="form-control mb-4" id="exampleFormControlInput1" placeholder="date"/>
+            <input type="text" className="form-control mb-4" id="exampleFormControlInput1" placeholder="date"/>
         </div>
         <div className="mb-3 flex-column fecha">
             <label for="exampleFormControlInput1" className="form-label mt-3 text-white"><strong>Hora</strong></label>
-            <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="hour"/>
+            <input type="text" className="form-control" id="exampleFormControlInput1" placeholder="hour"/>
         </div>
 
         <div className="flex-column fecha mt-5">
