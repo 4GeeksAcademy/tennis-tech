@@ -1,16 +1,22 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
+import {Context} from "../store/appContext.js"
 
 export const Signup = () => {
 
-    const [userRegister, setUserRegister] = useState({})
+    const [user, setuser] = useState({})
     const [isEqual, setIsEqual] = useState(true)
+    const {actions} = useContext(Context)
 
-    const confirmarPasswords = () =>{
+    const handleAddUser = () =>{
         let pass1 = document.getElementById('pass1')
         let pass2 = document.getElementById('pass2')
-        if(pass1.value != pass2.value) setIsEqual(false)
-        else setIsEqual(true)
+        if(pass1.value != pass2.value) setIsEqual(false) // validacion para comprobar que los campos contraseña y confirmar contraseña son iguales
+        else {
+            setIsEqual(true)
+            actions.addNewUser(user)
+        }
     }
+
 
 
     return (
@@ -24,18 +30,18 @@ export const Signup = () => {
                     <h2 className="card-header text-light text-center">Sign Up</h2>
                     <div className="card-body">
                         <div className="input-group mb-3">
-                            <input type="text" onChange={(event) => setUserRegister({...userRegister, username: event.target.value})} value={userRegister.username || ''} className="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1"/>
+                            <input type="text" onChange={(event) => setuser({...user, username: event.target.value})} value={user.username || ''} className="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1"/>
                         </div>
                         <div className="input-group mb-3">
-                            <input type="email" onChange={(event) => setUserRegister({...userRegister, email: event.target.value})} value={userRegister.email || ''} className="form-control" placeholder="Email" aria-label="Email" aria-describedby="basic-addon1"/>
+                            <input type="email" onChange={(event) => setuser({...user, email: event.target.value})} value={user.email || ''} className="form-control" placeholder="Email" aria-label="Email" aria-describedby="basic-addon1"/>
                         </div>
                         <div className="input-group mb-3">
-                            <input type="password" onChange={(event) => setUserRegister({...userRegister, password: event.target.value})} value={userRegister.password || ''} className="form-control" id="pass1" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1"/>
+                            <input type="password" onChange={(event) => setuser({...user, password: event.target.value})} value={user.password || ''} className="form-control" id="pass1" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1"/>
                         </div>
                         <div className="input-group mb-3">
                             <input type="password" className="form-control" id="pass2" placeholder="Confirm Password" aria-label="Confirm Password" aria-describedby="basic-addon1"/>
                         </div>
-                        <button className="btn btn-primary" onClick={confirmarPasswords} style={{width: "100%"}}>Join Us</button>
+                        <button className="btn btn-primary" onClick={handleAddUser} style={{width: "100%"}}>Join Us</button>
                     </div>
                 </div>
             </div>
