@@ -4,7 +4,7 @@ import React from "react";
 export const Login = () => {
     return(
         <>
-            <div className="container position relative">
+            <div className="container">
 
                 <div className="card position-absolute top-50 start-50 translate-middle" style={{width: "500px", backgroundColor: "#74B72D"}}>
                     <h2 className="card-header text-light text-center">Welcome!!</h2>

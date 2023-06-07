@@ -1,3 +1,11 @@
 .footer{
     background-color: rgba(146, 235, 12, 0.731);
-}
+    width: 100%;
+    height: 60px;
+    position: fixed;
+    bottom: 0 !important;
+    left: 0;
+      }
+
+
+
