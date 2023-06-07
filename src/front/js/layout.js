@@ -35,11 +35,11 @@ const Layout = () => {
                         <Route element={<Login />} path="/login" />
                         <Route element={<Signup />} path="/signup" />
                         <Route element={<Profile />} path="/profile" />
-                        {/* <Route element={<Demo />} path="/demo" />
-                        <Route element={<Single />} path="/single/:theid" /> */}
                         <Route element={<LessonForm />} path="/lessons" />
                         <Route element={<Canchas />} path="/canchas" />
                         <Route element={<Reservations />} path="/reservations/:id" />
+                        {/* <Route element={<Demo />} path="/demo" />
+                        <Route element={<Single />} path="/single/:theid" /> */}
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
                     <Footer />

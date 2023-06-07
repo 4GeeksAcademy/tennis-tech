@@ -3,7 +3,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			message: null,
 			users: [],
-			contID: -1
+			contID: -1,
+			fieldReservations: []
 			// demo: [
 			// 	{
 			// 		title: "FIRST",
@@ -56,6 +57,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 				newUser.id = store.contID;
 				setStore({users: [...store.users, newUser]}) 
 				console.log(store.users)
+			},
+
+			addNewFieldReservation: newFieldReservation => {
+				const store = getStore();
+				setStore({fieldReservations: [...store.fieldReservations, newFieldReservation]})
+				console.log(store.fieldReservations)
 			}
 
 		}
