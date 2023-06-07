@@ -54,7 +54,7 @@ export const Profile = () =>{
                         <div className="input-group mb-3 flex-column">
                             <label for="formFile" className="form-label">Category: </label>
                             <select id="inputState" className="form-select" style={{width: "100%"}}>
-                                <option selected>Please select your category</option>
+                                <option>Please select your category</option>
                                 <option>primera</option>
                                 <option>segunda</option>
                                 <option>tercera</option>
