@@ -16,11 +16,11 @@ export const LessonForm = () => {
         <div className='formulario'>
         <div className="mb-3 flex-column fecha">
             <label for="exampleFormControlInput1" className="form-label text-white"><strong>Fecha</strong></label>
-            <input type="email" className="form-control mb-4" id="exampleFormControlInput1" placeholder="date"/>
+            <input type="date" className="form-control mb-4" id="exampleFormControlInput1" placeholder="date"/>
         </div>
         <div className="mb-3 flex-column fecha">
             <label for="exampleFormControlInput1" className="form-label mt-3 text-white"><strong>Hora</strong></label>
-            <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="hour"/>
+            <input type="time" className="form-control" id="exampleFormControlInput1" placeholder="hour"/>
         </div>
         
         <div className="flex-column fecha mt-5">
@@ -45,7 +45,7 @@ export const LessonForm = () => {
 
         <div className="mb-3 flex-column fecha">
             <label for="exampleFormControlTextarea1" className="form-label mt-3 comentarios text-white"><strong>Comentarios</strong></label>
-            <textarea className="form-control" id="exampleFormControlTextarea1" rows="3">¿Quieres dejar un comentario a tu instructor?</textarea>
+            <textarea className="form-control" placeholder='¿Quieres dejar un comentario a tu instructor?' id="exampleFormControlTextarea1" rows="3"></textarea>
         </div>
         
 

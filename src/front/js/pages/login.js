@@ -13,7 +13,7 @@ export const Login = () => {
                             <input type="text" className="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1"/>
                         </div>
                         <div className="input-group mb-3">
-                            <input type="text" className="form-control" placeholder="Password" aria-label="Username" aria-describedby="basic-addon1"/>
+                            <input type="password" className="form-control" placeholder="Password" aria-label="Username" aria-describedby="basic-addon1"/>
                         </div>
                         <button className="btn btn-primary" style={{width: "100%"}}>Sign In</button>
                     </div>
