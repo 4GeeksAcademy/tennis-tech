@@ -30,18 +30,20 @@ const Layout = () => {
             <BrowserRouter basename={basename}>
                 <ScrollToTop>
                     <Navbar />
-                    <Routes>
-                        <Route element={<Home />} path="/" />
-                        <Route element={<Login />} path="/login" />
-                        <Route element={<Signup />} path="/signup" />
-                        <Route element={<Profile />} path="/profile" />
-                        <Route element={<LessonForm />} path="/lessons" />
-                        <Route element={<Canchas />} path="/canchas" />
-                        <Route element={<Reservations />} path="/reservations/:id" />
-                        {/* <Route element={<Demo />} path="/demo" />
-                        <Route element={<Single />} path="/single/:theid" /> */}
-                        <Route element={<h1>Not found!</h1>} />
-                    </Routes>
+                    <div style={{minHeight: "100vh"}}>
+                        <Routes>
+                            <Route element={<Home />} path="/" />
+                            <Route element={<Login />} path="/login" />
+                            <Route element={<Signup />} path="/signup" />
+                            <Route element={<Profile />} path="/profile" />
+                            <Route element={<LessonForm />} path="/lessons" />
+                            <Route element={<Canchas />} path="/canchas" />
+                            <Route element={<Reservations />} path="/reservations/:id" />
+                            {/* <Route element={<Demo />} path="/demo" />
+                            <Route element={<Single />} path="/single/:theid" /> */}
+                            <Route element={<h1>Not found!</h1>} />
+                        </Routes>
+                    </div>
                     <Footer />
                 </ScrollToTop>
             </BrowserRouter>
