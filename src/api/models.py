@@ -187,4 +187,7 @@ class Reservation_Field(db.Model):
             # do not serialize the password, its a security breach
         }
 
+# field = Field(type_field.gomitas, 2, "Esta es la cancha de tus sueños")
+
+# print(field.type)
 
