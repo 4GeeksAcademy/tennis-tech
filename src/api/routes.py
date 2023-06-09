@@ -37,7 +37,7 @@ def register():
         return jsonify({"message": err}), 500
     
 
-@api.route('/profile', methods=['POST'])
+@api.route('/profile', methods=['POST']) # revisar este endpoint ya que no esta funcionando
 def create_profile():
     body = request.json
 
@@ -62,7 +62,7 @@ def create_profile():
     
 
 @api.route('/instructor', methods=['POST'])
-def handle_instructor():
+def create_instructor():
     body = request.json
 
     if "name" not in body:
@@ -81,3 +81,11 @@ def handle_instructor():
         return jsonify(nuevo_instructor.serialize()), 200
     except Exception as err:
         return jsonify({"message": err}), 500
+    
+@api.route('/instructors', methods=['GET'])
+def get_all_instructors():
+    all_instructors = Instructor.query.all()
+    if all_instructors is not None:
+        return jsonify([instructor.serialize() for instructor in all_instructors]), 200
+    else:
+        return jsonify({"message": "instructors not found"}), 404
