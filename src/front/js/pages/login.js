@@ -15,6 +15,9 @@ export const Login = () => {
                         <div className="input-group mb-3">
                             <input type="password" className="form-control" placeholder="Password" aria-label="Username" aria-describedby="basic-addon1"/>
                         </div>
+                        <div className="mb-3 text-center">
+                            <span style={{color: "white"}}>Forgot your password?</span>
+                        </div>
                         <button className="btn btn-primary" style={{width: "100%"}}>Sign In</button>
                     </div>
                 </div>
