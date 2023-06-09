@@ -99,8 +99,8 @@ class Profile (db.Model):
     date_of_birth = db.Column(db.Date, unique=False, nullable=False)
     category = db.Column(Enum(type_category), nullable=False, default=type_category.primera)
     gender = db.Column(Enum(type_gender), nullable=False, default=type_gender.neutral)
-    user_id = db.Column(db.Integer, ForeignKey('user.id')) 
-    user = relationship(User)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id')) 
+    user = db.relationship('User')
 
     def __init__(self, name, last_name, date_of_birth, category, gender):
         self.name = name
@@ -132,12 +132,12 @@ class Reservation_Class(db.Model):
     time = db.Column(db.Time, unique=False, nullable=False)
     difficulty = db.Column(Enum(type_difficulty), nullable=False, default=type_difficulty.principiante)
     comments = db.Column(db.String(1000), unique=False, nullable=True)
-    user_id = db.Column(db.Integer, ForeignKey('user.id')) 
-    user = relationship(User)
-    instructor_id = db.Column(db.Integer, ForeignKey('instructor.id')) 
-    instructor = relationship(Instructor)
-    field_id = db.Column(db.Integer, ForeignKey('field.id')) 
-    field = relationship(Field)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id')) 
+    user = db.relationship('User')
+    instructor_id = db.Column(db.Integer, db.ForeignKey('instructor.id')) 
+    instructor = db.relationship('Instructor')
+    field_id = db.Column(db.Integer, db.ForeignKey('field.id')) 
+    field = db.relationship('Field')
 
     def __init__(self, date, time, difficulty, comments):
         self.date = date
@@ -166,10 +166,10 @@ class Reservation_Field(db.Model):
     time = db.Column(db.Time, unique=False, nullable=False)
     number_of_players = db.Column(Enum(n_players), nullable=False, default=n_players.dos)
     type = db.Column(Enum(type_field), nullable=False, default=type_field.concreto)
-    user_id = db.Column(db.Integer, ForeignKey('user.id')) 
-    user = relationship(User)
-    field_id = db.Column(db.Integer, ForeignKey('field.id')) 
-    field = relationship(Field)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id')) 
+    user = db.relationship('User')
+    field_id = db.Column(db.Integer, db.ForeignKey('field.id')) 
+    field = db.relationship('Field')
 
     def __init__(self, date, time, number_of_players, type):
         self.date = date
