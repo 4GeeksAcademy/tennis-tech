@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Profile, Instructor, type_category, type_gender
+from api.models import db, User, Profile, Instructor, Field, Reservation_Class
 from api.utils import generate_sitemap, APIException
 
 api = Blueprint('api', __name__)
@@ -98,3 +98,64 @@ def get_all_instructors():
         return jsonify([instructor.serialize() for instructor in all_instructors]), 200
     else:
         return jsonify({"message": "instructors not found"}), 404
+    
+
+@api.route('/field', methods=['POST'])
+def create_field():
+    body = request.json
+
+    if "type" not in body:
+        return jsonify({"message": "Error, asegúrate de enviar 'type' en el body"}), 400
+    if "number_of_field" not in body:
+        return jsonify({"message": "Error, asegúrate de enviar 'number_of_field' en el body"}), 400
+    if "description" not in body:
+        return jsonify({"message": "Error, asegúrate de enviar 'description' en el body"}), 400
+    
+    try:
+        nuevo_field = Field(body['type'], body['number_of_field'], body['description'])
+        db.session.add(nuevo_field)
+        db.session.commit()
+        return jsonify(nuevo_field.serialize()), 200
+    except Exception as err:
+        return jsonify({"message": err}), 500
+    
+
+@api.route('/fields', methods=['GET'])
+def get_all_fields():
+    all_reservation_class = Field.query.all()
+    if all_reservation_class is not None:
+        return jsonify([field.serialize() for field in all_reservation_class]), 200
+    else:
+        return jsonify({"message": "fields not found"}), 404
+    
+
+@api.route('/reservation-class', methods=['POST']) # revisar este endpoint ya que no esta funcionando
+def create_reservation_class():
+    body = request.json
+
+    if "date" not in body:
+        return jsonify({"message": "Error, asegúrate de enviar 'date' en el body"}), 400
+    if "time" not in body:
+        return jsonify({"message": "Error, asegúrate de enviar 'time' en el body"}), 400
+    if "difficulty" not in body:
+        return jsonify({"message": "Error, asegúrate de enviar 'difficulty' en el body"}), 400
+    if "comments" not in body:
+        return jsonify({"message": "Error, asegúrate de enviar 'comments' en el body"}), 400
+    
+    try:
+        nuevo_reservation_class = Reservation_Class(body['date'], body['time'], body['difficulty'], body['comments'])
+        db.session.add(nuevo_reservation_class)
+        db.session.commit()
+        return jsonify(nuevo_reservation_class.serialize()), 200
+    except Exception as err:
+        return jsonify({"message": err}), 500  
+    
+@api.route('/reservation-classes', methods=['GET'])
+def get_all_reservation_class():
+    all_reservation_class = Reservation_Class.query.all()
+    if all_reservation_class is not None:
+        return jsonify([reservation_class.serialize() for reservation_class in all_reservation_class]), 200
+    else:
+        return jsonify({"message": "fields not found"}), 404
+    
+
