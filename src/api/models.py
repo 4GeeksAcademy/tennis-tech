@@ -129,7 +129,7 @@ class type_difficulty(enum.Enum):
 class Reservation_Class(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.Date, unique=False, nullable=False)
-    time = db.Column(db.Time, unique=False, nullable=False)
+    hour = db.Column(db.Time, unique=False, nullable=False)
     difficulty = db.Column(Enum(type_difficulty), nullable=False, default=type_difficulty.principiante)
     comments = db.Column(db.String(1000), unique=False, nullable=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id')) 
@@ -139,9 +139,9 @@ class Reservation_Class(db.Model):
     field_id = db.Column(db.Integer, db.ForeignKey('field.id')) 
     field = db.relationship('Field')
 
-    def __init__(self, date, time, difficulty, comments):
+    def __init__(self, date, hour, difficulty, comments):
         self.date = date
-        self.time = time
+        self.hour = hour
         self.difficulty = difficulty
         self.comments = comments 
 
@@ -149,7 +149,7 @@ class Reservation_Class(db.Model):
         return {
             "id": self.id,
             "date": self.date,
-            "time": self.time,
+            "hour": str(self.hour),
             "difficulty": self.difficulty.value,
             "comments": self.comments,
             # do not serialize the password, its a security breach
@@ -163,7 +163,7 @@ class n_players(enum.Enum):
 class Reservation_Field(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.Date, unique=False, nullable=False)
-    time = db.Column(db.Time, unique=False, nullable=False)
+    hour = db.Column(db.Time, unique=False, nullable=False)
     number_of_players = db.Column(Enum(n_players), nullable=False, default=n_players.dos)
     type = db.Column(Enum(type_field), nullable=False, default=type_field.concreto)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id')) 
@@ -171,9 +171,9 @@ class Reservation_Field(db.Model):
     field_id = db.Column(db.Integer, db.ForeignKey('field.id')) 
     field = db.relationship('Field')
 
-    def __init__(self, date, time, number_of_players, type):
+    def __init__(self, date, hour, number_of_players, type):
         self.date = date
-        self.time = time
+        self.hour = hour
         self.number_of_players = number_of_players
         self.type = type
 
@@ -181,8 +181,8 @@ class Reservation_Field(db.Model):
         return {
             "id": self.id,
             "date": self.date,
-            "time": self.time,
-            "number_of_players": self.number_of_players,
+            "hour": str(self.hour),
+            "number_of_players": self.number_of_players.value,
             "type": self.type.value,
             # do not serialize the password, its a security breach
         }
