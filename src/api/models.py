@@ -73,7 +73,7 @@ class Field(db.Model):
     def serialize(self):
         return {
             "id": self.id,
-            "type": self.type,
+            "type": self.type.value,
             "number_of_field": self.number_of_field,
             "description": self.description
             # do not serialize the password, its a security breach
@@ -115,8 +115,8 @@ class Profile (db.Model):
             "name": self.name,
             "last_name": self.last_name,
             "date_of_birth": self.date_of_birth,
-            "category": self.category,
-            "gender": self.gender,
+            "category": self.category.value,
+            "gender": self.gender.value,
             # do not serialize the password, its a security breach
         }
     
@@ -150,7 +150,7 @@ class Reservation_Class(db.Model):
             "id": self.id,
             "date": self.date,
             "time": self.time,
-            "difficulty": self.difficulty,
+            "difficulty": self.difficulty.value,
             "comments": self.comments,
             # do not serialize the password, its a security breach
         }
@@ -183,7 +183,7 @@ class Reservation_Field(db.Model):
             "date": self.date,
             "time": self.time,
             "number_of_players": self.number_of_players,
-            "type": self.type,
+            "type": self.type.value,
             # do not serialize the password, its a security breach
         }
 

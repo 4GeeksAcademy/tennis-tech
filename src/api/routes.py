@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Profile, Instructor
+from api.models import db, User, Profile, Instructor, type_category, type_gender
 from api.utils import generate_sitemap, APIException
 
 api = Blueprint('api', __name__)
@@ -59,6 +59,15 @@ def create_profile():
         return jsonify(nuevo_profile.serialize()), 200
     except Exception as err:
         return jsonify({"message": err}), 500   
+    
+
+@api.route('/profiles', methods=['GET'])
+def get_all_profiles():
+    all_profiles = Profile.query.all()
+    if all_profiles is not None:
+        return jsonify([profile.serialize() for profile in all_profiles]), 200
+    else:
+        return jsonify({"message": "instructors not found"}), 404
     
 
 @api.route('/instructor', methods=['POST'])
