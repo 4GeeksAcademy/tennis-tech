@@ -51,7 +51,18 @@ def register():
         return jsonify({"message": err}), 500
     
 
-@api.route('/profile', methods=['POST']) # revisar este endpoint ya que no esta funcionando
+@api.route('/user/<int:id>', methods=['GET'])
+def get_user(id):
+    user = User.query.get(id)
+    if user is not None:
+        return jsonify(user.serialize()), 200
+    else:
+        return jsonify({"message": "user not found"}), 404
+    
+
+    
+
+@api.route('/profile', methods=['POST']) 
 def create_profile():
     body = request.json
 
@@ -143,7 +154,7 @@ def get_all_fields():
         return jsonify({"message": "fields not found"}), 404
     
 
-@api.route('/reservation-class', methods=['POST']) # revisar este endpoint ya que no esta funcionando
+@api.route('/reservation-class', methods=['POST']) 
 def create_reservation_class():
     body = request.json
 
