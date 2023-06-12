@@ -1,6 +1,7 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
+			token: null,
 			message: null,
 			users: [],
 			contID: -1,
@@ -50,6 +51,35 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// 	//reset the global store
 			// 	setStore({ demo: demo });
 			// }
+			login: async (username, password) => {
+				const options = {
+
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json"
+					},
+					body: JSON.stringify({
+						username: username,
+						password: password
+					})
+				};
+
+				try{
+					const resp = await fetch(process.env.BACKEND_URL + "/api/token", options)
+				if(resp.status !== 200) {
+					alert("There has been some error");
+					return false;
+				};
+				const data = await resp.json();
+				console.log("esto viene del backend", data);
+				sessionStorage.setItem("token", data.access_token);
+				setStore({token: data.access_token})
+				return true;
+				}
+				catch(error){
+					console.error("There has been an error login in")
+				}
+			},
 
 			addNewUser: newUser => {
 				const store = getStore();

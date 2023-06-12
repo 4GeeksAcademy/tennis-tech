@@ -7,35 +7,12 @@ export const Login = () => {
     
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+
     const token = sessionStorage.getItem("token");
+    console.log("This is your token" , token)
 
     const handleClick = () => {
-
-        const options = {
-
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                "username": username,
-                "password": password
-            }
-                
-            )
-        }
-        fetch("https://maraarrieche-cuddly-umbrella-9v4qpr669jx2xxqp-3001.preview.app.github.dev/api/token", options)
-        .then(resp => {
-            if(resp.status === 200) return resp.json();
-            else alert("There has been some error")
-        })
-        .then(data => {
-            console.log("esto viene del backend", data)
-            sessionStorage.setItem("token", data.access_token)
-        })
-        .catch(error => {
-            console.error("Error!", error)
-        })
+       actions.login(username, password);
     }
    
 
@@ -44,7 +21,7 @@ export const Login = () => {
             <div className="container">
                 <div className="card position-absolute top-50 start-50 translate-middle" style={{width: "500px", backgroundColor: "#74B72D"}}>
                     <h2 className="card-header text-light text-center">Welcome!!</h2>
-                    {(token && token!="" && token!=undefined) ? "You are logged in with this token" + token : <div className="card-body">
+                    {token && token != "" && token != undefined ? ("You are logged in with this token " + token) : (<div className="card-body">
                         <div className="input-group mb-3">
                             <input type="text" className="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" value={username} onChange={e => setUsername(e.target.value)}/>
                         </div>
@@ -56,7 +33,7 @@ export const Login = () => {
                         </div>
                         <button onClick={handleClick} className="btn btn-primary" style={{width: "100%"}}>Sign In</button>
                     </div>
-                    }
+                        )}   
                 </div>
             </div>
         </>
