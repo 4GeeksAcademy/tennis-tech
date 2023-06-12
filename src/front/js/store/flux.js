@@ -26,9 +26,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// },
 
 			getMessage: async () => {
+				const store = getStore();
+				const options = {
+					headers: {
+						Authorization: "Bearer " + store.token
+					}
+				}
+
 				try{
 					// fetching data from the backend
-					const resp = await fetch(process.env.BACKEND_URL + "/api/hello")
+					fetch(process.env.BACKEND_URL + "/api/hello", options)
 					const data = await resp.json()
 					setStore({ message: data.message })
 					// don't forget to return something, that is how the async resolves
@@ -51,6 +58,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// 	//reset the global store
 			// 	setStore({ demo: demo });
 			// }
+			syncTokenFromSessionStore: () => {
+				const token = sessionStorage.getItem("token");
+				console.log("Application just loaded, synching the session storage token")
+				if(token && token != "" && token != undefined) setStore({token: token})
+			},
+
+			logout: () => {
+				sessionStorage.removeItem("token");
+				console.log("Login out")
+				setStore({ token: null })
+			},
+
 			login: async (username, password) => {
 				const options = {
 
