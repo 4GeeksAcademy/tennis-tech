@@ -2,6 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 import os
+import hashlib
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, User, Profile, Instructor, Field, Reservation_Class, Reservation_Field
 from api.utils import generate_sitemap, APIException
@@ -15,11 +16,14 @@ api = Blueprint('api', __name__)
 def create_token():
     username = request.json.get("username", None)
     password = request.json.get("password", None)
-    if username != "test" or password != "test":
+    if username == None or password == None:
         return jsonify({"msg": "Bad username or password"}), 401
 
-    access_token = create_access_token(identity=username)
-    return jsonify(access_token=access_token)
+    search_user= User.query.filter_by(username=username).one_or_none();
+    if search_user != None:
+            if search_user.password == hashlib.md5(password.encode('utf-8') ).hexdigest():
+                return jsonify({ "token": create_access_token(identity=search_user.username) }), 200
+            return jsonify({ "message" : "password doesnt match, be carefull 🔓️ "}), 401
 
 
 @api.route('/hello', methods=['GET'])
