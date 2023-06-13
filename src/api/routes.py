@@ -19,11 +19,12 @@ def create_token():
     if username == None or password == None:
         return jsonify({"msg": "Bad username or password"}), 401
 
-    search_user= User.query.filter_by(username=username).one_or_none();
-    if search_user != None:
-            if search_user.password == hashlib.md5(password.encode('utf-8') ).hexdigest():
-                return jsonify({ "token": create_access_token(identity=search_user.username) }), 200
-            return jsonify({ "message" : "password doesnt match, be carefull 🔓️ "}), 401
+    search_user= User.query.filter_by(username=username).one_or_none()
+    if search_user == None:
+        return jsonify({ "message" : "user not found "}), 404
+    if search_user.password == hashlib.md5(password.encode('utf-8') ).hexdigest():
+        return jsonify({ "token": create_access_token(identity=search_user.username) }), 200
+    return jsonify({ "message" : "password doesnt match! "}), 401
 
 
 @api.route('/hello', methods=['GET'])
@@ -48,7 +49,8 @@ def register():
         return jsonify({"message": "Error, asegúrate de enviar 'password' en el body"}), 400
     
     try:
-        nuevo_user = User(body['username'], body['email'], body['password'])
+        hashed_password = hashlib.md5( body['password'].encode('utf-8') ).hexdigest()
+        nuevo_user = User(body['username'], body['email'], hashed_password)
         db.session.add(nuevo_user)
         db.session.commit()
         return jsonify(nuevo_user.serialize()), 200
