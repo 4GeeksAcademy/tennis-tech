@@ -198,9 +198,6 @@ def create_reservation_class():
         
     username = get_jwt_identity()
     user = User.query.filter_by(username=username).one_or_none()
-    # instructor = Instructor.query.filter_by(id=instructor.id).one_or_none()
-    # # print(instructor)
-    # field = Field.query.filter_by(id=field.id).one_or_none()
     if user == None:
             return "La informacion del usuario esta incompleta", 404
     else:
@@ -222,6 +219,7 @@ def get_all_reservation_class():
         return jsonify({"message": "fields not found"}), 404
     
 @api.route('/reservation-field', methods=['POST']) 
+@jwt_required()
 def create_reservation_field():
     body = request.json
 
@@ -233,10 +231,18 @@ def create_reservation_field():
         return jsonify({"message": "Error, asegúrate de enviar 'number_of_players' en el body"}), 400
     if "type" not in body:
         return jsonify({"message": "Error, asegúrate de enviar 'type' en el body"}), 400
+    if "field_id" not in body:
+        return jsonify({"message": "Error, asegúrate de enviar 'field_id' en el body"}), 400
     
-    try:
-        nuevo_reservation_field = Reservation_Field(body['date'], body['hour'], body['number_of_players'], body['type'])
+    username = get_jwt_identity()
+    user = User.query.filter_by(username=username).one_or_none()
+    if user == None:
+            return "La informacion del usuario esta incompleta", 404
+    else:
+        nuevo_reservation_field = Reservation_Field(body['date'], body['hour'], body['number_of_players'], body['type'], user.id, body['field_id'])
         db.session.add(nuevo_reservation_field)
+
+    try:
         db.session.commit()
         return jsonify(nuevo_reservation_field.serialize()), 200
     except Exception as err:

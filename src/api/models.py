@@ -172,18 +172,20 @@ class Reservation_Field(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.Date, unique=False, nullable=False)
     hour = db.Column(db.Time, unique=False, nullable=False)
-    number_of_players = db.Column(Enum(n_players), nullable=False, default=n_players.dos)
-    type = db.Column(Enum(type_field), nullable=False, default=type_field.concreto)
+    number_of_players = db.Column(Enum(n_players), nullable=False)
+    type = db.Column(Enum(type_field), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id')) 
     user = db.relationship('User')
     field_id = db.Column(db.Integer, db.ForeignKey('field.id')) 
     field = db.relationship('Field')
 
-    def __init__(self, date, hour, number_of_players, type):
+    def __init__(self, date, hour, number_of_players, type, user_id, field_id):
         self.date = date
         self.hour = hour
         self.number_of_players = number_of_players
         self.type = type
+        self.user_id = user_id
+        self.field_id = field_id
 
     def serialize(self):
         return {
@@ -192,6 +194,9 @@ class Reservation_Field(db.Model):
             "hour": str(self.hour),
             "number_of_players": self.number_of_players.value,
             "type": self.type.value,
+            "user": self.user.serialize() if self.user != None else 'No user',
+            "field": self.field.serialize() if self.field != None else 'No field'
+
             # do not serialize the password, its a security breach
         }
 
