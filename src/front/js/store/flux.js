@@ -4,7 +4,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 			token: null,
 			message: null,
 			users: [],
-			contID: -1,
 			fieldReservations: []
 			// demo: [
 			// 	{
@@ -35,7 +34,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				try{
 					// fetching data from the backend
-					fetch(process.env.BACKEND_URL + "/api/hello", options)
+					let resp = await fetch(process.env.BACKEND_URL + "/api/hello", options)
+					
 					const data = await resp.json()
 					setStore({ message: data.message })
 					// don't forget to return something, that is how the async resolves
@@ -100,19 +100,61 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			addNewUser: newUser => {
-				const store = getStore();
-				setStore({contID: store.contID + 1});
-				newUser.id = store.contID;
-				setStore({users: [...store.users, newUser]}) 
-				console.log(store.users)
+			addNewUser: async (newUser) => {
+				try {
+
+					const resp = await fetch(process.env.BACKEND_URL + "/api/signup", {
+						method: "POST", // *GET, POST, PUT, DELETE, etc.
+						mode: "cors", // no-cors, *cors, same-origin
+						//cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+						//credentials: "same-origin", // include, *same-origin, omit
+						headers: {
+							"Content-Type": "application/json",
+							// 'Content-Type': 'application/x-www-form-urlencoded',
+						},
+						//redirect: "follow", // manual, *follow, error
+						//referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+						body: JSON.stringify(newUser) // body data type must match "Content-Type" header
+					})
+					const data = await resp.json();
+					return true
+					console.log(data);
+
+				} catch (error) {
+					console.log(error)
+				}
 			},
 
-			addNewFieldReservation: newFieldReservation => {
-				const store = getStore();
-				setStore({fieldReservations: [...store.fieldReservations, newFieldReservation]})
-				console.log(store.fieldReservations)
+			createProfile: async (newProfile) => {
+				try{
+					const resp = await fetch(process.env.BACKEND_URL + "/api/profile", {
+						method: "POST", // *GET, POST, PUT, DELETE, etc.
+						mode: "cors", // no-cors, *cors, same-origin
+						//cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+						//credentials: "same-origin", // include, *same-origin, omit
+						headers: {
+							"Content-Type": "application/json",
+							// 'Content-Type': 'application/x-www-form-urlencoded',
+						},
+						//redirect: "follow", // manual, *follow, error
+						//referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+						body: JSON.stringify(newProfile) // body data type must match "Content-Type" header
+					})
+					const data = await resp.json();
+					return data
+
+				} catch (error) {
+					console.log(error)
+				}
 			}
+
+
+
+			// addNewFieldReservation: newFieldReservation => {
+			// 	const store = getStore();
+			// 	setStore({fieldReservations: [...store.fieldReservations, newFieldReservation]})
+			// 	console.log(store.fieldReservations)
+			// }
 
 		}
 	};

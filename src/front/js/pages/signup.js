@@ -1,19 +1,25 @@
 import React, {useState, useContext} from "react";
+import {useNavigate} from "react-router-dom";
 import {Context} from "../store/appContext.js"
 
 export const Signup = () => {
 
     const [user, setUser] = useState({})
     const [isEqual, setIsEqual] = useState(true)
+    // const [success, setSuccess] = useState(false)
     const {actions} = useContext(Context)
+    const navigate = useNavigate()
 
-    const handleAddUser = () =>{
+    const handleAddUser = async () =>{
         let pass1 = document.getElementById('pass1')
         let pass2 = document.getElementById('pass2')
         if(pass1.value != pass2.value) setIsEqual(false) // validacion para comprobar que los campos contraseña y confirmar contraseña son iguales
         else {
             setIsEqual(true)
-            actions.addNewUser(user)
+            let response = await actions.addNewUser(user)
+            if(response){
+                navigate("/login")
+            }
         }
     }
 

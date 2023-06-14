@@ -1,8 +1,10 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
+import {Context} from "../store/appContext"
 
 export const Profile = () =>{
 
     const [profile, setProfile] = useState({})
+    const {actions} = useContext(Context)
 
     return(
         <>
@@ -96,7 +98,7 @@ export const Profile = () =>{
 
                 <div className="row">
                     <div className="col-12 mb-3 d-flex">
-                        <button className="btn btn-primary mx-auto" style={{width: "50%"}}>Save your changes</button>
+                        <button className="btn btn-primary mx-auto" onClick={() => actions.createProfile(profile) } style={{width: "50%"}}>Save your changes</button>
                     </div>
 
                 </div>
