@@ -154,6 +154,9 @@ class Reservation_Class(db.Model):
             "hour": str(self.hour),
             "difficulty": self.difficulty.value,
             "comments": self.comments,
+            "user": self.user.serialize() if self.user != None else 'No user',
+            "instructor": self.instructor.serialize() if self.instructor != None else 'No instructor',
+            "field": self.field.serialize() if self.field != None else 'No field'
             # do not serialize the password, its a security breach
         }
 

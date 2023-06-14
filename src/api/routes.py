@@ -24,7 +24,7 @@ def create_token():
         return jsonify({ "message" : "user not found "}), 404
     if search_user.password == hashlib.md5(password.encode('utf-8') ).hexdigest():
         return jsonify({ "token": create_access_token(identity=search_user.username) }), 200
-    return jsonify({ "message" : "password doesnt match! "}), 401
+    return jsonify({ "message" : "password doesn't match! "}), 401
 
 
 @api.route('/hello', methods=['GET'])
