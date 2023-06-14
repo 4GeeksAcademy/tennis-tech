@@ -57,6 +57,14 @@ def register():
     except Exception as err:
         return jsonify({"message": err}), 500
     
+@api.route('/users', methods=['GET'])
+def get_all_users():
+    all_users = User.query.all()
+    if all_users is not None:
+        return jsonify([user.serialize() for user in all_users]), 200
+    else:
+        return jsonify({"message": "Users not found"}), 404
+    
 
 @api.route('/user/<int:id>', methods=['GET'])
 def get_user(id):
@@ -70,6 +78,7 @@ def get_user(id):
     
 
 @api.route('/profile', methods=['POST']) 
+@jwt_required()
 def create_profile():
     body = request.json
 
@@ -84,13 +93,20 @@ def create_profile():
     if "gender" not in body:
         return jsonify({"message": "Error, asegúrate de enviar 'gender' en el body"}), 400
     
-    try:
-        nuevo_profile = Profile(body['name'], body['last_name'], body['date_of_birth'], body['category'], body['gender'])
+    username = get_jwt_identity()
+    user = User.query.filter_by(username=username).one_or_none()
+    print(user)
+    print(username)
+    if user == None:
+            return "Ese usuario no existe", 404
+    else:
+        nuevo_profile = Profile(body['name'], body['last_name'], body['date_of_birth'], body['category'], body['gender'], user.id)
         db.session.add(nuevo_profile)
+    try:
         db.session.commit()
         return jsonify(nuevo_profile.serialize()), 200
     except Exception as err:
-        return jsonify({"message": err}), 500   
+        return jsonify({"message": err.args}), 400 
     
 
 @api.route('/profiles', methods=['GET'])
@@ -99,7 +115,7 @@ def get_all_profiles():
     if all_profiles is not None:
         return jsonify([profile.serialize() for profile in all_profiles]), 200
     else:
-        return jsonify({"message": "instructors not found"}), 404
+        return jsonify({"message": "Profiles not found"}), 404
     
 
 @api.route('/instructor', methods=['POST'])
@@ -190,7 +206,7 @@ def get_all_reservation_class():
     else:
         return jsonify({"message": "fields not found"}), 404
     
-@api.route('/reservation-field', methods=['POST']) # revisar este endpoint ya que no esta funcionando
+@api.route('/reservation-field', methods=['POST']) 
 def create_reservation_field():
     body = request.json
 

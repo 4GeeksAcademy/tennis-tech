@@ -97,17 +97,18 @@ class Profile (db.Model):
     name = db.Column(db.String(120), unique=False, nullable=False)
     last_name = db.Column(db.String(120), unique=False, nullable=False)
     date_of_birth = db.Column(db.Date, unique=False, nullable=False)
-    category = db.Column(Enum(type_category), nullable=False, default=type_category.primera)
-    gender = db.Column(Enum(type_gender), nullable=False, default=type_gender.neutral)
+    category = db.Column(Enum(type_category), nullable=False)
+    gender = db.Column(Enum(type_gender), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id')) 
     user = db.relationship('User')
 
-    def __init__(self, name, last_name, date_of_birth, category, gender):
+    def __init__(self, name, last_name, date_of_birth, category, gender, user_id):
         self.name = name
         self.last_name = last_name
         self.date_of_birth = date_of_birth
         self.category = category
         self.gender = gender 
+        self.user_id = user_id
 
     def serialize(self):
         return {
@@ -117,6 +118,7 @@ class Profile (db.Model):
             "date_of_birth": self.date_of_birth,
             "category": self.category.value,
             "gender": self.gender.value,
+            "user": self.user.serialize() if self.user != None else 'No user'
             # do not serialize the password, its a security breach
         }
     

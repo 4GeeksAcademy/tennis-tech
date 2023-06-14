@@ -13,9 +13,15 @@ export const Login = () => {
     const navigate = useNavigate()
     console.log("This is your token" , store.token)
 
-    const handleClick = () => {
-       actions.login(username, password);
-       navigate("/")
+    const handleClick = async () => {
+      let response = await actions.login(username, password);
+        if(response){
+
+           navigate("/")
+       }
+       else{
+        console.log("Credenciales invalidas")
+       }
     }
    
 
