@@ -95,8 +95,8 @@ def create_profile():
     
     username = get_jwt_identity()
     user = User.query.filter_by(username=username).one_or_none()
-    print(user)
-    print(username)
+    # print(user)
+    # print(username)
     if user == None:
             return "Ese usuario no existe", 404
     else:
@@ -178,6 +178,7 @@ def get_all_fields():
     
 
 @api.route('/reservation-class', methods=['POST']) 
+@jwt_required()
 def create_reservation_class():
     body = request.json
 
@@ -189,10 +190,24 @@ def create_reservation_class():
         return jsonify({"message": "Error, asegúrate de enviar 'difficulty' en el body"}), 400
     if "comments" not in body:
         return jsonify({"message": "Error, asegúrate de enviar 'comments' en el body"}), 400
-    
-    try:
-        nuevo_reservation_class = Reservation_Class(body['date'], body['hour'], body['difficulty'], body['comments'])
+    if "instructor_id" not in body:
+        return jsonify({"message": "Error, asegúrate de enviar 'instructor_id' en el body"}), 400
+    if "field_id" not in body:
+        return jsonify({"message": "Error, asegúrate de enviar 'field_id' en el body"}), 400
+
+        
+    username = get_jwt_identity()
+    user = User.query.filter_by(username=username).one_or_none()
+    # instructor = Instructor.query.filter_by(id=instructor.id).one_or_none()
+    # # print(instructor)
+    # field = Field.query.filter_by(id=field.id).one_or_none()
+    if user == None:
+            return "La informacion del usuario esta incompleta", 404
+    else:
+        nuevo_reservation_class = Reservation_Class(body['date'], body['hour'], body['difficulty'], body['comments'], user.id, body['instructor_id'], body["field_id"])
         db.session.add(nuevo_reservation_class)
+
+    try:
         db.session.commit()
         return jsonify(nuevo_reservation_class.serialize()), 200
     except Exception as err:

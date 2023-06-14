@@ -132,7 +132,7 @@ class Reservation_Class(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.Date, unique=False, nullable=False)
     hour = db.Column(db.Time, unique=False, nullable=False)
-    difficulty = db.Column(Enum(type_difficulty), nullable=False, default=type_difficulty.principiante)
+    difficulty = db.Column(Enum(type_difficulty), nullable=False)
     comments = db.Column(db.String(1000), unique=False, nullable=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id')) 
     user = db.relationship('User')
@@ -141,11 +141,14 @@ class Reservation_Class(db.Model):
     field_id = db.Column(db.Integer, db.ForeignKey('field.id')) 
     field = db.relationship('Field')
 
-    def __init__(self, date, hour, difficulty, comments):
+    def __init__(self, date, hour, difficulty, comments, user_id, instructor_id, field_id):
         self.date = date
         self.hour = hour
         self.difficulty = difficulty
         self.comments = comments 
+        self.user_id = user_id
+        self.instructor_id = instructor_id
+        self.field_id = field_id
 
     def serialize(self):
         return {
@@ -154,6 +157,9 @@ class Reservation_Class(db.Model):
             "hour": str(self.hour),
             "difficulty": self.difficulty.value,
             "comments": self.comments,
+            "user": self.user.serialize() if self.user != None else 'No user',
+            "instructor": self.instructor.serialize() if self.instructor != None else 'No instructor',
+            "field": self.field.serialize() if self.field != None else 'No field'
             # do not serialize the password, its a security breach
         }
 
