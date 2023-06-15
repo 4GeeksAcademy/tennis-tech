@@ -4,6 +4,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			token: null,
 			message: null,
 			users: [],
+			instructors: [],
 			fieldReservations: []
 			// demo: [
 			// 	{
@@ -122,6 +123,35 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				} catch (error) {
 					console.log(error)
+				}
+			},
+
+			getInstructors: async () => {
+
+				const store = getStore()
+
+				try {
+					const resp = await fetch(process.env.BACKEND_URL + "/api/instructors", {
+						method: "GET", // *GET, POST, PUT, DELETE, etc.
+						mode: "cors", // no-cors, *cors, same-origin
+						//cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+						//credentials: "same-origin", // include, *same-origin, omit
+						headers: {
+							//"Content-Type": "application/json",
+							"Authorization": "Bearer " + store.token
+							// 'Content-Type': 'application/x-www-form-urlencoded',
+						},
+						//redirect: "follow", // manual, *follow, error
+						//referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+						//body: JSON.stringify(credentials) // body data type must match "Content-Type" header
+					})
+					const data = await resp.json()
+					setStore({ instructors: data })
+					// don't forget to return something, that is how the async resolves
+					console.log(instructors)
+					return data;
+				} catch (error) {
+					console.log("Error loading message from backend", error)
 				}
 			},
 
