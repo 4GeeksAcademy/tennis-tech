@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import {Context} from "../store/appContext"
+
 
 export const ReservationFieldCard = () =>{
+
     return(
         <>
             <div className="card text-center my-3" style={{width: "25%"}}>

@@ -11,7 +11,6 @@ export const Login = () => {
     const [password, setPassword] = useState("");
     /*const history = useHistory();*/
     const navigate = useNavigate()
-    console.log("This is your token" , store.token)
 
     const handleClick = async () => {
       let response = await actions.login(username, password);

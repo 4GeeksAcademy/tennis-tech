@@ -1,5 +1,6 @@
 import React from 'react'
 import "../../styles/home.css";
+import "../../styles/reservasHome.css"
 import { Link } from "react-router-dom";
 
 export const ReservasHome = () => {
@@ -15,7 +16,7 @@ export const ReservasHome = () => {
   		<div className="carousel-inner">
     	<div className="carousel-item active">
       			<img src="https://images.unsplash.com/flagged/photo-1576972405668-2d020a01cbfa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1474&q=80" className="d-block w-100" alt="..."/>
-      	<div className="carousel-caption d-none d-md-block texto">
+      	<div className="carousel-caption d-none d-md-block bg-success fondo">
 		<Link to="/canchas" className="text-light">
         	<h2 className="text-white">¡Haz clic aquí para reservar tu cancha!</h2>
 		</Link>
