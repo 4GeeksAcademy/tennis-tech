@@ -146,10 +146,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 						//body: JSON.stringify(credentials) // body data type must match "Content-Type" header
 					})
 					const data = await resp.json()
-					setStore({ instructors: data })
+					setStore({ instructors : data })
 					// don't forget to return something, that is how the async resolves
-					console.log(data)
-					return data;
+					console.log(store.instructors)
 				} catch (error) {
 					console.log("Error loading message from backend", error)
 				}
