@@ -25,7 +25,7 @@ export const ReservasHome = () => {
     	</div>
     	<div className="carousel-item">
       		<img src="https://images.unsplash.com/photo-1587683437362-da7775ffc532?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" className="d-block w-100" alt="..."/>
-      	<div className="carousel-caption d-none d-md-block texto">
+      	<div className="carousel-caption d-none d-md-block bg-success fondo">
 		<Link to="/lessons" className="text-light">
         	<h2 className="text-white">¡Haz clic aquí para agendar una clase!</h2>
 		</Link>

@@ -1,14 +1,15 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			token: null,
+			token: [],
 			message: null,
 			users: [],
 			instructors: [],
 			fieldReservation: [],
 			fields: [],
 			classesReservation: [],
-			profiles: []
+			profiles: [],
+			createProfile: []
 			// demo: [
 			// 	{
 			// 		title: "FIRST",
@@ -79,7 +80,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 					method: "POST",
 					headers: {
-						"Content-Type": "application/json"
+						"Content-Type": "application/json",
+						"Authorization": "Bearer " + store.token
 					},
 					body: JSON.stringify({
 						username: username,
@@ -104,6 +106,37 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
+			createProfile: async () => {
+
+				const store = getStore();
+
+				try{
+					const resp = await fetch(process.env.BACKEND_URL + "/api/profile", {
+						method: "POST", // *GET, POST, PUT, DELETE, etc.
+						mode: "cors", // no-cors, *cors, same-origin
+						//cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+						//credentials: "same-origin", // include, *same-origin, omit
+						headers: {
+							"Content-type": "application/json",
+							"Authorization": "Bearer " + store.token
+							// 'Content-Type': 'application/x-www-form-urlencoded',
+						},
+						//redirect: "follow", // manual, *follow, error
+						//referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+						body: JSON.stringify({
+							data
+						}) // body data type must match "Content-Type" header
+					})
+					const data = await resp.json();
+					setStore({ createProfile : data })
+					console.log("profile viene del backend", data)
+					return true;
+
+				} catch (error) {
+					console.log(error)
+				}
+			},
+
 			getUsers: async () => {
 
 				const store = getStore()
@@ -115,7 +148,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						//cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
 						//credentials: "same-origin", // include, *same-origin, omit
 						headers: {
-							//"Content-Type": "application/json",
+							"Content-Type": "application/json",
 							"Authorization": "Bearer " + store.token
 							// 'Content-Type': 'application/x-www-form-urlencoded',
 						},
@@ -127,6 +160,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					setStore({ users : data })
 					// don't forget to return something, that is how the async resolves
 					console.log(store.users)
+					
 				} catch (error) {
 					console.log("Error loading message from backend", error)
 				}
@@ -149,8 +183,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 						body: JSON.stringify(newUser) // body data type must match "Content-Type" header
 					})
 					const data = await resp.json();
-					return true
 					console.log(data);
+					return true;
 
 				} catch (error) {
 					console.log(error)
@@ -292,31 +326,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log("Error loading message from backend", error)
 				}
 			},
-
-			// createProfile: async (newProfile) => {
-			// 	try{
-			// 		const resp = await fetch(process.env.BACKEND_URL + "/api/profile", {
-			// 			method: "POST", // *GET, POST, PUT, DELETE, etc.
-			// 			mode: "cors", // no-cors, *cors, same-origin
-			// 			//cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-			// 			//credentials: "same-origin", // include, *same-origin, omit
-			// 			headers: {
-			// 				"Content-Type": "application/json",
-			// 				// 'Content-Type': 'application/x-www-form-urlencoded',
-			// 			},
-			// 			//redirect: "follow", // manual, *follow, error
-			// 			//referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-			// 			body: JSON.stringify(newProfile) // body data type must match "Content-Type" header
-			// 		})
-			// 		const data = await resp.json();
-			// 		console.log(store.profile)
-			// 		return data
-					
-
-			// 	} catch (error) {
-			// 		console.log(error)
-			// 	}
-			// }
 
 
 

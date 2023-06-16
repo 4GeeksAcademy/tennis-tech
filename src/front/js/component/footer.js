@@ -3,6 +3,7 @@ import "../../styles/footer.css";
 
 
 export const Footer = () => (
+	
 	<>
 	<div>
 	<footer className="footer text-center mt-auto bg-success">

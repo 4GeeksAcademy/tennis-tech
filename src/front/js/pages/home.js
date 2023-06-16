@@ -54,13 +54,13 @@ export const Home = () => {
 	}, 
 	[store.token])
 
+
 	return (
 		<>
 			{store.message}
 			<ReservasHome/>
 			<InstructorsHome/>
 			<CanchasHome/>
-		
 		</>
 	);
 };
