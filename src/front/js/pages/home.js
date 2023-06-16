@@ -57,7 +57,6 @@ export const Home = () => {
 
 	return (
 		<>
-			{store.message}
 			<ReservasHome/>
 			<InstructorsHome/>
 			<CanchasHome/>

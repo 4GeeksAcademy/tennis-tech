@@ -16,15 +16,21 @@ export const Navbar = () => {
 				</Link>
 				<div className="ml-auto d-flex justify-content-between" style={{width: "150px"}}>
 					{ !store.token ?
-					<Link to="/login">
-						<button className="btn btn-light me-2">Log in</button>
-					</Link>
+					<>
+						<Link to="/login">
+							<button className="btn btn-light me-2">Log in</button>
+						</Link>
+						<Link to="/signup">
+							<button className="btn btn-light">Sign Up</button>
+						</Link>
+					</>
 					:
+					<>
+					
 						<button onClick={() => actions.logout()} className="btn btn-light">Log out</button>
+					</>
 					}
-					<Link to="/signup">
-						<button className="btn btn-light">Sign Up</button>
-					</Link>
+					
 					
 				</div>
 			</div>
