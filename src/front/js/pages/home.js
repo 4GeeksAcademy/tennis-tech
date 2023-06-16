@@ -48,11 +48,11 @@ export const Home = () => {
 	}, 
 	[store.token])
 
-	useEffect(() => {
-		if(store.token && store.token != "" && store.token != undefined) actions.getMessage();
-		actions.createProfile()
-	}, 
-	[store.token])
+	// useEffect(() => {
+	// 	if(store.token && store.token != "" && store.token != undefined) actions.getMessage();
+	// 	actions.createProfile()
+	// }, 
+	// [store.token])
 
 
 	return (

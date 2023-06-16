@@ -1,7 +1,7 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			token: [],
+			token: null,
 			message: null,
 			users: [],
 			instructors: [],
@@ -9,7 +9,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			fields: [],
 			classesReservation: [],
 			profiles: [],
-			createProfile: []
+			createProfile: [],
 			// demo: [
 			// 	{
 			// 		title: "FIRST",
@@ -76,6 +76,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			login: async (username, password) => {
+				const store = getStore()
+
 				const options = {
 
 					method: "POST",
@@ -106,7 +108,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			createProfile: async () => {
+			createProfile: async (newProfile) => {
 
 				const store = getStore();
 
@@ -123,9 +125,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 						},
 						//redirect: "follow", // manual, *follow, error
 						//referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-						body: JSON.stringify({
-							data
-						}) // body data type must match "Content-Type" header
+						body: JSON.stringify(
+							newProfile
+						) // body data type must match "Content-Type" header
 					})
 					const data = await resp.json();
 					setStore({ createProfile : data })
