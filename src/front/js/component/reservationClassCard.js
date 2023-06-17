@@ -1,6 +1,8 @@
 import React from 'react';
 
 export const ReservationClassCard = () =>{
+
+
     return(
         <>
             <div className="card text-center my-3" style={{width: "25%"}}>
