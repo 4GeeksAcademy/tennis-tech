@@ -31,15 +31,15 @@ export const LessonForm = () => {
         
         const randomNumber = Math.floor(Math.random() * length);
       
-        return fields[randomNumber];
+        return fields[randomNumber].id;
       }
       
       function handleClassReservation(){
+        // console.log(generateRandomFieldId(store.fields))
         const randomFieldId = generateRandomFieldId(store.fields);
-        setClassReservation({...classReservation, field_id: randomFieldId.id})
-        console.log(classReservation.field_id);
-        // actions.addClassReservation(classReservation)
+        actions.addClassReservation({...classReservation, field_id: randomFieldId})
       }
+      
 
     return (
         <div className='body'>
@@ -60,19 +60,19 @@ export const LessonForm = () => {
             <label for="inputState" className="form-label text-white"><strong>Dificultad</strong></label>
             <select id="inputState" className="form-select" onChange={(event) => setClassReservation({...classReservation, difficulty: event.target.value})} value={classReservation.difficulty || ''}>
                 <option selected>Elige el nivel de tu clase</option>
-                <option>Principiante</option>
-                <option>Intermedio</option>
-                <option>Avanzado</option>
+                <option>principiante</option>
+                <option>intermedio</option>
+                <option>avanzado</option>
             </select>
         </div>
 
         <div className="flex-column fecha mt-5 mb-5">
             <label for="inputState" className="form-label text-white"><strong>Instructor</strong></label>
-            <select id="inputState" className="form-select" onChange={(event) => setClassReservation({...classReservation, instructor_id: event.target.id})} value={classReservation.instructor_id || ''}>
-                <option selected>Elige el instructor de tu preferencia</option>
+            <select id="inputState" className="form-select" onChange={(event) => setClassReservation({...classReservation, instructor_id: Number(event.target.value)})}>
+                <option>Elige el instructor de tu preferencia</option>
             {
                 store.instructors.map((instructor) => (
-                    <option>{instructor.name}{" "}{instructor.last_name}</option>
+                    <option value={instructor.id}>{instructor.name}{" "}{instructor.last_name}</option>
                 ) )
             }
                 {/* <option>Nombre</option>

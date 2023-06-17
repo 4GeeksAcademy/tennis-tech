@@ -195,7 +195,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			addClassReservation: async (newClassReservation) => {
-
+				console.log(newClassReservation)
 				const store = getStore()
 				
 				try {
@@ -207,15 +207,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 						//credentials: "same-origin", // include, *same-origin, omit
 						headers: {
 							"Content-Type": "application/json",
-							"Authorization": "Bearer " + store.token
+							"Authorization": "Bearer " + store.token,
+							'Access-Control-Allow-Origin': "*"
 							// 'Content-Type': 'application/x-www-form-urlencoded',
 						},
 						//redirect: "follow", // manual, *follow, error
 						//referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
 						body: JSON.stringify(newClassReservation) // body data type must match "Content-Type" header
 					})
+					console.log(resp);
 					const data = await resp.json();
-					console.log(data);
 					return true;
 
 				} catch (error) {
