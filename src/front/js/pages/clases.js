@@ -19,6 +19,28 @@ export const LessonForm = () => {
 	}, 
 	[store.token])
 
+    useEffect(() => {
+		actions.getFields()
+        actions.getInstructors()
+	}, 
+	[])
+
+    function generateRandomFieldId(fields) {
+      
+        const length = fields.length;
+        
+        const randomNumber = Math.floor(Math.random() * length);
+      
+        return fields[randomNumber];
+      }
+      
+      function handleClassReservation(){
+        const randomFieldId = generateRandomFieldId(store.fields);
+        setClassReservation({...classReservation, field_id: randomFieldId.id})
+        console.log(classReservation.field_id);
+        // actions.addClassReservation(classReservation)
+      }
+
     return (
         <div className='body'>
 
@@ -46,11 +68,11 @@ export const LessonForm = () => {
 
         <div className="flex-column fecha mt-5 mb-5">
             <label for="inputState" className="form-label text-white"><strong>Instructor</strong></label>
-            <select id="inputState" className="form-select" onChange={(event) => setClassReservation({...classReservation, instructor: event.target.value})} value={classReservation.instructor || ''}>
+            <select id="inputState" className="form-select" onChange={(event) => setClassReservation({...classReservation, instructor_id: event.target.id})} value={classReservation.instructor_id || ''}>
                 <option selected>Elige el instructor de tu preferencia</option>
             {
                 store.instructors.map((instructor) => (
-                    <option>{instructor.name}</option>
+                    <option>{instructor.name}{" "}{instructor.last_name}</option>
                 ) )
             }
                 {/* <option>Nombre</option>
@@ -66,7 +88,7 @@ export const LessonForm = () => {
         
 
         <div className='boton'>
-        <button type="button" className="btn btn-primary" onClick={() => actions.addClassReservation(classReservation)}>Reservar</button>
+        <button type="button" className="btn btn-primary" onClick={handleClassReservation}>Reservar</button>
         </div>
 
         </div>

@@ -15,13 +15,13 @@ export const Home = () => {
 	useEffect(() => {
 		if(store.token && store.token != "" && store.token != undefined) {
 			actions.getMessage();
-			actions.getInstructors()
 			actions.getFields()
 			// actions.getClassesReservations()
 			// actions.getFieldReservations()
 			actions.getProfiles()
 			actions.getUsers()
 		} 
+		actions.getInstructors()
 	}, 
 	[store.token])
 
