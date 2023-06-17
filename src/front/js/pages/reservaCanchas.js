@@ -41,9 +41,9 @@ export const Canchas = () => {
     <label for="inputState" className="form-label text-white"><strong>Cancha</strong></label>
     <select id="inputState" className="form-select" onChange={(event) => setCanchaReservation({...canchaReservation, field: event.target.value})} value={canchaReservation.field || ""}>
         <option selected>Selecciona la cancha de tu preferencia</option>
-        <option>Concreto</option>
-        <option>Arcilla</option>
-        <option>Grama</option>
+        <option>concreto</option>
+        <option>arcilla</option>
+        <option>grama</option>
     </select>
 </div>
 
