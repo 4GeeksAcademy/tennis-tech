@@ -10,10 +10,13 @@ export const TeacherCard = (props) => {
                     <img src={props.image} style={{height: "50%", objectFit: "cover"}}/>
                     <div className="card-body">
                         <div className="mb-3">
-                            <label className="fw-bold">Descripcion:</label>
+                            <label className="fw-bold">{props.name}{" "}{props.last_name}</label>
                         </div>
                         <div className="mb-3">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                            <label>{props.years_of_experience}</label>
+                        </div>
+                        <div className="mb-3">
+                            <p>{props.description}</p>
                         </div>
                     </div>
                 </div>
@@ -22,5 +25,11 @@ export const TeacherCard = (props) => {
 }
 
 TeacherCard.protoTypes = {
-    image: PropTypes.string
+    image: PropTypes.string,
+    name: PropTypes.string,
+    last_name: PropTypes.string,
+    years_of_experience: PropTypes.number,
+    description: PropTypes.string
+
+
 }
