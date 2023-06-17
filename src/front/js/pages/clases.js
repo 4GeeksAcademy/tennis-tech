@@ -44,15 +44,20 @@ export const LessonForm = () => {
             </select>
         </div>
 
-        {/* <div className="flex-column fecha mt-5 mb-5">
+        <div className="flex-column fecha mt-5 mb-5">
             <label for="inputState" className="form-label text-white"><strong>Instructor</strong></label>
             <select id="inputState" className="form-select" onChange={(event) => setClassReservation({...classReservation, instructor: event.target.value})} value={classReservation.instructor || ''}>
                 <option selected>Elige el instructor de tu preferencia</option>
+            {
+                store.instructors.map((instructor) => (
+                    <option>{instructor.name}</option>
+                ) )
+            }
+                {/* <option>Nombre</option>
                 <option>Nombre</option>
-                <option>Nombre</option>
-                <option>Nombre</option>
+                <option>Nombre</option> */}
             </select>
-        </div> */}
+        </div>
 
         <div className="mb-3 flex-column fecha">
             <label for="exampleFormControlTextarea1" className="form-label mt-3 comentarios text-white"><strong>Comentarios</strong></label>
