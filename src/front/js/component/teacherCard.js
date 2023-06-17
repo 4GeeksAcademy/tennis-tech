@@ -13,7 +13,7 @@ export const TeacherCard = (props) => {
                             <label className="fw-bold">{props.name}{" "}{props.last_name}</label>
                         </div>
                         <div className="mb-3">
-                            <label>{props.years_of_experience}</label>
+                            <label>{props.years_of_experience} {" "} años de experiencia</label>
                         </div>
                         <div className="mb-3">
                             <p>{props.description}</p>
