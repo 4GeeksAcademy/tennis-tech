@@ -173,17 +173,15 @@ class Reservation_Field(db.Model):
     date = db.Column(db.Date, unique=False, nullable=False)
     hour = db.Column(db.Time, unique=False, nullable=False)
     number_of_players = db.Column(Enum(n_players), nullable=False)
-    type = db.Column(Enum(type_field), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id')) 
     user = db.relationship('User')
     field_id = db.Column(db.Integer, db.ForeignKey('field.id')) 
     field = db.relationship('Field')
 
-    def __init__(self, date, hour, number_of_players, type, user_id, field_id):
+    def __init__(self, date, hour, number_of_players, user_id, field_id):
         self.date = date
         self.hour = hour
         self.number_of_players = number_of_players
-        self.type = type
         self.user_id = user_id
         self.field_id = field_id
 
@@ -193,7 +191,6 @@ class Reservation_Field(db.Model):
             "date": self.date,
             "hour": str(self.hour),
             "number_of_players": self.number_of_players.value,
-            "type": self.type.value,
             "user": self.user.serialize() if self.user != None else 'No user',
             "field": self.field.serialize() if self.field != None else 'No field'
 

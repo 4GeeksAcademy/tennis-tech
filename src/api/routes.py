@@ -229,8 +229,6 @@ def create_reservation_field():
         return jsonify({"message": "Error, asegúrate de enviar 'hour' en el body"}), 400
     if "number_of_players" not in body:
         return jsonify({"message": "Error, asegúrate de enviar 'number_of_players' en el body"}), 400
-    if "type" not in body:
-        return jsonify({"message": "Error, asegúrate de enviar 'type' en el body"}), 400
     if "field_id" not in body:
         return jsonify({"message": "Error, asegúrate de enviar 'field_id' en el body"}), 400
     
@@ -239,7 +237,7 @@ def create_reservation_field():
     if user == None:
             return "La informacion del usuario esta incompleta", 404
     else:
-        nuevo_reservation_field = Reservation_Field(body['date'], body['hour'], body['number_of_players'], body['type'], user.id, body['field_id'])
+        nuevo_reservation_field = Reservation_Field(body['date'], body['hour'], body['number_of_players'], user.id, body['field_id'])
         db.session.add(nuevo_reservation_field)
 
     try:

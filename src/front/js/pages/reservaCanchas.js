@@ -43,11 +43,11 @@ export const Canchas = () => {
 
 <div className="flex-column fecha mt-5 mb-5">
     <label for="inputState" className="form-label text-white"><strong>Cancha</strong></label>
-    <select id="inputState" className="form-select" onChange={(event) => setCanchaReservation({...canchaReservation, type: event.target.value})} value={canchaReservation.type || ""}>
+    <select id="inputState" className="form-select" onChange={(event) => setCanchaReservation({...canchaReservation, field_id: Number(event.target.value)})}>
         <option selected>Selecciona la cancha de tu preferencia</option>
         {
             store.fields.map((field) => (
-                <option>{field.type}</option>
+                <option value={field.id}>{field.type}</option>
             ))
         }
     </select>
