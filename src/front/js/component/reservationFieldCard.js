@@ -1,8 +1,9 @@
 import React, { useContext } from 'react';
 import {Context} from "../store/appContext"
+import PropTypes from "prop-types"
 
 
-export const ReservationFieldCard = () =>{
+export const ReservationFieldCard = (props) =>{
 
     return(
         <>
@@ -11,10 +12,10 @@ export const ReservationFieldCard = () =>{
                     Details
                 </div>
                 <div className="card-body">
-                    <p className="card-text text-start">Date: </p>
-                    <p className="card-text text-start">Time: </p>
-                    <p className="card-text text-start">Number of Players: </p>
-                    <p className="card-text text-start">Field: </p>
+                    <p className="card-text text-start">Date: {" "} {props.date}</p>
+                    <p className="card-text text-start">Time:{" "} {props.hour} </p>
+                    <p className="card-text text-start">Number of Players:{" "} {props.number_of_players} </p>
+                    <p className="card-text text-start">Field:{" "}{props.field} </p>
                     <button className="btn btn-danger">Delete</button>
                 </div>
                 <div className="card-footer text-muted">
@@ -27,4 +28,12 @@ export const ReservationFieldCard = () =>{
 
 
     )
+}
+
+ReservationFieldCard.propTypes = {
+    date: PropTypes.string,
+    hour: PropTypes.string,
+    number_of_players: PropTypes.string,
+    field: PropTypes.string
+
 }

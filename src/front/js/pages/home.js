@@ -15,24 +15,23 @@ export const Home = () => {
 	useEffect(() => {
 		if(store.token && store.token != "" && store.token != undefined) {
 			actions.getMessage();
-			actions.getFields()
+			
 			// actions.getClassesReservations()
 			// actions.getFieldReservations()
 			actions.getProfiles()
 			actions.getUsers()
 		} 
-		actions.getInstructors()
+		
 	}, 
 	[store.token])
 
+	useEffect(() => {
+		actions.getInstructors()
+		actions.getFields()
+	}, [])
+
 	
 
-
-	// useEffect(() => {
-	// 	if(store.token && store.token != "" && store.token != undefined) actions.getMessage();
-	// 	actions.createProfile()
-	// }, 
-	// [store.token])
 
 
 	return (
