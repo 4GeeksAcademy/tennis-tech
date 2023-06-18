@@ -34,6 +34,7 @@ ReservationFieldCard.propTypes = {
     date: PropTypes.string,
     hour: PropTypes.string,
     number_of_players: PropTypes.string,
-    field: PropTypes.string
+    field: PropTypes.string,
+    item: PropTypes.object
 
 }

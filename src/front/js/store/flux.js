@@ -393,12 +393,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 
 
-			// addNewFieldReservation: newFieldReservation => {
-			// 	const store = getStore();
-			// 	setStore({fieldReservations: [...store.fieldReservations, newFieldReservation]})
-			// 	console.log(store.fieldReservations)
-			// }
-
 		}
 	};
 };

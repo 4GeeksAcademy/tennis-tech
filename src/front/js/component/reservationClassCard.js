@@ -37,6 +37,7 @@ ReservationClassCard.propTypes = {
     difficulty: PropTypes.string,
     instructor_name: PropTypes.string,
     instructor_last_name: PropTypes.string,
-    comments: PropTypes.string
+    comments: PropTypes.string,
+    item: PropTypes.object
 
 }

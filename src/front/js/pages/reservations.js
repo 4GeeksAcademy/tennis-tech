@@ -29,6 +29,7 @@ export const Reservations = () =>{
                                 hour={fieldReservation.hour}
                                 number_of_players={fieldReservation.number_of_players}
                                 field={fieldReservation.field.type}
+                                item={fieldReservation}
                             />
                         ))
                     }
@@ -46,6 +47,7 @@ export const Reservations = () =>{
                                 instructor_name={classReservation.instructor.name}
                                 instructor_last_name={classReservation.instructor.last_name}
                                 comments={classReservation.comments}
+                                item={classReservation}
                             />
                         ))
                     }
