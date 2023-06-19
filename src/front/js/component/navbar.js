@@ -35,14 +35,8 @@ export const Navbar = () => {
 								<Link to="/profile" style={{textDecoration: "none"}}>
 									<li className="dropdown-item">My profile</li>
 								</Link>
-								{
-									// store.users.map((user) => ( 
-									// 	 	<Link to={`/reservations/${user.username}`} style={{textDecoration: "none"}}>
-									// 	 		<li className="dropdown-item">My reservations</li>
-									//  		</Link>
-									// ))
-								}
-								<Link to="/reservations" style={{textDecoration: "none"}}>
+								
+								<Link to={`/reservations/${store.userLoggedIn?.id}`} style={{textDecoration: "none"}}>
 									<li className="dropdown-item">My reservations</li>
 								</Link>
 								

@@ -1,4 +1,5 @@
 import React, {useEffect, useContext} from 'react';
+import { useParams } from 'react-router-dom';
 import { ReservationFieldCard } from '../component/reservationFieldCard';
 import { ReservationClassCard } from '../component/reservationClassCard';
 import {Context} from "../store/appContext"
@@ -6,12 +7,14 @@ import {Context} from "../store/appContext"
 export const Reservations = () =>{
 
     const {store, actions} = useContext(Context)
+    const {id} = useParams()
 
     useEffect(() => {
         if(store.token && store.token != "" && store.token != undefined) {
 			actions.getMessage();
-			actions.getClassesReservations()
-			actions.getFieldReservations()
+			actions.getClassesReservations(id)
+			actions.getFieldReservations(id)
+
 			
 		} 
     }, [store.token])

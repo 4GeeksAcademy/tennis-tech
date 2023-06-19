@@ -23,7 +23,7 @@ def create_token():
     if search_user == None:
         return jsonify({ "message" : "user not found "}), 404
     if search_user.password == hashlib.md5(password.encode('utf-8') ).hexdigest():
-        return jsonify({ "token": create_access_token(identity=search_user.username) }), 200
+        return jsonify({ "token": create_access_token(identity=search_user.username), "user": search_user.serialize() }), 200
     return jsonify({ "message" : "password doesn't match! "}), 401
 
 
@@ -217,6 +217,14 @@ def get_all_reservation_class():
     else:
         return jsonify({"message": "fields not found"}), 404
     
+@api.route('/reservation-classes/<int:id>', methods=['GET'])
+def get_reservation_classes_byID(id):
+    all_reservation_class_user = Reservation_Class.query.filter_by(user_id=id)
+    if all_reservation_class_user is not None:
+        return jsonify([reservation_class.serialize() for reservation_class in all_reservation_class_user]), 200
+    else:
+        return jsonify({"message": "classes for that user not found"}), 404
+    
 @api.route('/reservation-class/<int:id>', methods=['DELETE'])
 @jwt_required()
 def delete_reservation_class(id):
@@ -278,6 +286,14 @@ def get_all_reservation_field():
         return jsonify([reservation_field.serialize() for reservation_field in all_reservation_field]), 200
     else:
         return jsonify({"message": "fields not found"}), 404
+    
+@api.route('/reservation-fields/<int:id>', methods=['GET'])
+def get_reservation_field_byID(id):
+    all_reservation_field_user = Reservation_Field.query.filter_by(user_id=id)
+    if all_reservation_field_user is not None:
+        return jsonify([reservation_field.serialize() for reservation_field in all_reservation_field_user]), 200
+    else:
+        return jsonify({"message": "fields for that user not found"}), 404
 
     
 @api.route('/reservation-field/<int:id>', methods=['DELETE'])
