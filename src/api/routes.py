@@ -217,6 +217,32 @@ def get_all_reservation_class():
     else:
         return jsonify({"message": "fields not found"}), 404
     
+@api.route('/reservation-class/<int:id>', methods=['DELETE'])
+@jwt_required()
+def delete_reservation_class(id):
+    
+    username = get_jwt_identity()
+    user = User.query.filter_by(username=username).one_or_none()
+    if user is not None:
+        reservation_class = Reservation_Class.query.get(id)
+        if reservation_class is not None:
+            db.session.delete(reservation_class)
+        else:
+            return jsonify({"message": "that reservation class not found"}), 404
+        
+        try:
+            db.session.commit()
+            response_body ={
+                "delete" : True
+            }
+            return jsonify(response_body), 200
+        except Exception as err:
+            return jsonify({"message": err}), 500 
+    else:
+        return "La informacion del usuario esta incompleta", 404
+
+    
+    
 @api.route('/reservation-field', methods=['POST']) 
 @jwt_required()
 def create_reservation_field():
@@ -253,5 +279,29 @@ def get_all_reservation_field():
     else:
         return jsonify({"message": "fields not found"}), 404
 
+    
+@api.route('/reservation-field/<int:id>', methods=['DELETE'])
+@jwt_required()
+def delete_reservation_field(id):
+    
+    username = get_jwt_identity()
+    user = User.query.filter_by(username=username).one_or_none()
+    if user is not None:
+        reservation_field = Reservation_Field.query.get(id)
+        if reservation_field is not None:
+            db.session.delete(reservation_field)
+        else:
+            return jsonify({"message": "that reservation field not found"}), 404
+        
+        try:
+            db.session.commit()
+            response_body ={
+                "delete" : True
+            }
+            return jsonify(response_body), 200
+        except Exception as err:
+            return jsonify({"message": err}), 500 
+    else:
+        return "La informacion del usuario esta incompleta", 404
     
 

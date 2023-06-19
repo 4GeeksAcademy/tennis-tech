@@ -1,9 +1,9 @@
-import React from 'react';
-import {Context} from "../store/appContext"
+import React, {useContext} from 'react';
 import PropTypes from "prop-types"
+import {Context} from "../store/appContext"
 
 export const ReservationClassCard = (props) =>{
-
+    const {actions} = useContext(Context)
 
     return(
         <>
@@ -17,7 +17,7 @@ export const ReservationClassCard = (props) =>{
                     <p className="card-text text-start">Difficulty: {" "}{props.difficulty}</p>
                     <p className="card-text text-start">Instructor: {" "}{props.instructor_name}{" "}{props.instructor_last_name}</p>
                     <p className="card-text text-start">Comments: {" "}{props.comments}</p>
-                    <button className="btn btn-danger">Delete</button>
+                    <button className="btn btn-danger" onClick={() => actions.deleteClassReservation(props.item, props.item.id)}>Delete</button>
                 </div>
                 <div className="card-footer text-muted">
                     Class Reservation
@@ -37,6 +37,7 @@ ReservationClassCard.propTypes = {
     difficulty: PropTypes.string,
     instructor_name: PropTypes.string,
     instructor_last_name: PropTypes.string,
-    comments: PropTypes.string
+    comments: PropTypes.string,
+    item: PropTypes.object
 
 }

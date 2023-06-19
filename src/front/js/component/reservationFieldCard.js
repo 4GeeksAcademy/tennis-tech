@@ -5,6 +5,10 @@ import PropTypes from "prop-types"
 
 export const ReservationFieldCard = (props) =>{
 
+<<<<<<< HEAD
+=======
+    const {actions} = useContext(Context)
+>>>>>>> eae81e5ce241a1743f93accb1ac582d207c978f9
 
     return(
         <>
@@ -17,7 +21,7 @@ export const ReservationFieldCard = (props) =>{
                     <p className="card-text text-start">Time:{" "} {props.hour} </p>
                     <p className="card-text text-start">Number of Players:{" "} {props.number_of_players} </p>
                     <p className="card-text text-start">Field:{" "}{props.field} </p>
-                    <button className="btn btn-danger">Delete</button>
+                    <button className="btn btn-danger" onClick={() => actions.deleteFieldReservation(props.item, props.item.id)}>Delete</button>
                 </div>
                 <div className="card-footer text-muted">
                     Field Reservation
@@ -35,6 +39,7 @@ ReservationFieldCard.propTypes = {
     date: PropTypes.string,
     hour: PropTypes.string,
     number_of_players: PropTypes.string,
-    field: PropTypes.string
+    field: PropTypes.string,
+    item: PropTypes.object
 
 }
