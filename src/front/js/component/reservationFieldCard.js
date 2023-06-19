@@ -5,10 +5,7 @@ import PropTypes from "prop-types"
 
 export const ReservationFieldCard = (props) =>{
 
-<<<<<<< HEAD
-=======
     const {actions} = useContext(Context)
->>>>>>> eae81e5ce241a1743f93accb1ac582d207c978f9
 
     return(
         <>
