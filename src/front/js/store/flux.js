@@ -4,6 +4,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			token: null,
 			message: null,
 			users: [],
+			userLoggedIn: {},
 			instructors: [],
 			fieldReservation: [],
 			fields: [],
@@ -67,7 +68,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 			syncTokenFromSessionStore: () => {
 				const token = sessionStorage.getItem("token");
 				console.log("Application just loaded, synching the session storage token")
-				if(token && token != "" && token != undefined) setStore({token: token})
+				const user = localStorage.getItem('user')
+				if(token && token != "" && token != undefined){
+					setStore({token: token})
+					setStore({userLoggedIn: user})
+				} 
 			},
 
 			logout: () => {
@@ -101,7 +106,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const data = await resp.json();
 				console.log("esto viene del backend", data);
 				sessionStorage.setItem("token", data.token);
+				localStorage.setItem("user", JSON.stringify(data.user))
 				setStore({token: data.token})
+				setStore({userLoggedIn: data.user})
 				return true;
 				}
 				catch(error){
@@ -336,11 +343,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			getFieldReservations: async () => {
+			getFieldReservations: async (id) => {
 
 				const store = getStore()
 				try {
-					const resp = await fetch(process.env.BACKEND_URL + "/api/reservation-fields", {
+					const resp = await fetch(process.env.BACKEND_URL + "/api/reservation-fields/" + id, {
 						method: "GET", // *GET, POST, PUT, DELETE, etc.
 						mode: "cors", // no-cors, *cors, same-origin
 						//cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
