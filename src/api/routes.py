@@ -217,6 +217,14 @@ def get_all_reservation_class():
     else:
         return jsonify({"message": "fields not found"}), 404
     
+@api.route('/reservation-classes/<int:id>', methods=['GET'])
+def get_reservation_classes_byID(id):
+    all_reservation_class_user = Reservation_Class.query.filter_by(user_id=id)
+    if all_reservation_class_user is not None:
+        return jsonify([reservation_class.serialize() for reservation_class in all_reservation_class_user]), 200
+    else:
+        return jsonify({"message": "classes for that user not found"}), 404
+    
 @api.route('/reservation-class/<int:id>', methods=['DELETE'])
 @jwt_required()
 def delete_reservation_class(id):

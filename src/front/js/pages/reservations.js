@@ -12,7 +12,7 @@ export const Reservations = () =>{
     useEffect(() => {
         if(store.token && store.token != "" && store.token != undefined) {
 			actions.getMessage();
-			actions.getClassesReservations()
+			actions.getClassesReservations(id)
 			actions.getFieldReservations(id)
 
 			

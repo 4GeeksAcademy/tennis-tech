@@ -316,11 +316,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			getClassesReservations: async () => {
+			getClassesReservations: async (id) => {
 
 				const store = getStore()
 				try {
-					const resp = await fetch(process.env.BACKEND_URL + "/api/reservation-classes", {
+					const resp = await fetch(process.env.BACKEND_URL + "/api/reservation-classes/" + id, {
 						method: "GET", // *GET, POST, PUT, DELETE, etc.
 						mode: "cors", // no-cors, *cors, same-origin
 						//cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
