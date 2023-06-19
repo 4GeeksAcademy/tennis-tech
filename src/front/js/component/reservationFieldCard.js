@@ -5,6 +5,8 @@ import PropTypes from "prop-types"
 
 export const ReservationFieldCard = (props) =>{
 
+    const {actions} = useContext(Context)
+
     return(
         <>
             <div className="card text-center my-3" style={{width: "25%"}}>
@@ -16,7 +18,7 @@ export const ReservationFieldCard = (props) =>{
                     <p className="card-text text-start">Time:{" "} {props.hour} </p>
                     <p className="card-text text-start">Number of Players:{" "} {props.number_of_players} </p>
                     <p className="card-text text-start">Field:{" "}{props.field} </p>
-                    <button className="btn btn-danger">Delete</button>
+                    <button className="btn btn-danger" onClick={() => actions.deleteFieldReservation(props.item, props.item.id)}>Delete</button>
                 </div>
                 <div className="card-footer text-muted">
                     Field Reservation
