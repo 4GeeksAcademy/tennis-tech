@@ -44,7 +44,7 @@ export const LessonForm = () => {
     return (
         <div className='body'>
 
-        <h2 className='d-flex justify-content-center mt-3 text-white'>Agenda tu clase</h2>
+        <h2 className='d-flex justify-content-center mt-3 text-white titulo-agendar'>Agenda tu clase</h2>
 
         <div className='formulario'>
         <div className="mb-3 flex-column fecha">
@@ -87,7 +87,7 @@ export const LessonForm = () => {
         </div>
         
 
-        <div className='boton'>
+        <div className='boton-reservar'>
         <button type="button" className="btn btn-primary" onClick={handleClassReservation}>Reservar</button>
         </div>
 

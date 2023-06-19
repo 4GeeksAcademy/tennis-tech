@@ -10,7 +10,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			classesReservation: [],
 			profiles: [],
 			createProfile: [],
-			addClassReservation: []
+			addClassReservation: [],
 			// demo: [
 			// 	{
 			// 		title: "FIRST",
@@ -253,7 +253,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log(error)
 				}
 			},
-
 
 			getInstructors: async () => {
 

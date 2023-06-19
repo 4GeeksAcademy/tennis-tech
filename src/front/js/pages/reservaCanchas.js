@@ -54,7 +54,7 @@ export const Canchas = () => {
 </div>
 
 
-<div className='boton'>
+<div className='boton-reservar'>
 <button type="button" className="btn btn-primary" onClick={() => actions.addNewFieldReservation(canchaReservation)}>Reservar</button>
 </div>
 

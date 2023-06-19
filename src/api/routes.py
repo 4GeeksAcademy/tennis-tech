@@ -72,8 +72,7 @@ def get_user(id):
     if user is not None:
         return jsonify(user.serialize()), 200
     else:
-        return jsonify({"message": "user not found"}), 404
-    
+        return jsonify({"message": "user not found"}), 404    
 
     
 
@@ -253,5 +252,6 @@ def get_all_reservation_field():
         return jsonify([reservation_field.serialize() for reservation_field in all_reservation_field]), 200
     else:
         return jsonify({"message": "fields not found"}), 404
+
     
 

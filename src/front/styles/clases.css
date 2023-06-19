@@ -11,14 +11,20 @@
     height: 50%;
 }
 
-.boton{
+.boton-reservar{
     display:flex;
     justify-content: center;
     margin-top: 70px;
+    padding-bottom: 70px;
+    color: rgba(146, 235, 12, 0.731);
 }
 
 .body{
     background-image: url(https://images.unsplash.com/photo-1601646761285-65bfa67cd7a3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80);
-    padding: 5%;
+    margin-top: -1.2%; 
     
+}
+
+.titulo-agendar{
+    padding-top: 3%;
 }
