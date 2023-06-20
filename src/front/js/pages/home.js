@@ -41,6 +41,7 @@ export const Home = () => {
 						type={field.type}
 						number_of_field={field.number_of_field}
 						description={field.description}
+						image={field.photo}
 						item={field}
 						key={index}
 

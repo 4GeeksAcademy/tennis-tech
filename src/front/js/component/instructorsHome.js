@@ -13,7 +13,7 @@ export const InstructorsHome = () => {
 					store.instructors.map((instructor, index) => (
 
 						<TeacherCard
-							image="https://images.unsplash.com/photo-1605395630162-1c7cc7a34590?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8dGVubmlzJTIwcGxheWVyfGVufDB8fDB8fHwy&auto=format&fit=crop&w=500&q=60"
+							image={instructor.photo}
 							name={instructor.name}
 							last_name={instructor.last_name}
 							years_of_experience={instructor.years_of_experience}

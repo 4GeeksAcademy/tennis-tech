@@ -35,12 +35,14 @@ class Instructor(db.Model):
     last_name = db.Column(db.String(120), unique=False, nullable=False)
     years_of_experience = db.Column(db.Integer, unique=False, nullable=False)
     description = db.Column(db.String(1000), unique=False, nullable=False)
+    image_url = db.Column(db.String(480), nullable=False)
 
-    def __init__(self, name, last_name, years_of_experience, description):
+    def __init__(self, name, last_name, years_of_experience, description, image_url):
         self.name = name
         self.last_name = last_name
         self.years_of_experience = years_of_experience
         self.description = description
+        self.image_url = image_url
 
 
     def serialize(self):
@@ -49,7 +51,8 @@ class Instructor(db.Model):
             "name": self.name,
             "last_name": self.last_name,
             "years_of_experience": self.years_of_experience,
-            "description": self.description
+            "description": self.description,
+            "photo": self.image_url
             # do not serialize the password, its a security breach
         }
 
@@ -63,11 +66,13 @@ class Field(db.Model):
     type = db.Column(Enum(type_field), nullable=False, default=type_field.concreto)
     number_of_field = db.Column(db.Integer, unique=False, nullable=False)
     description = db.Column(db.String(1000), unique=False, nullable=False)
+    image_url = db.Column(db.String(480), nullable=False)
 
-    def __init__(self, type, number_of_field, description):
+    def __init__(self, type, number_of_field, description, image_url):
         self.type = type
         self.number_of_field = number_of_field
         self.description = description
+        self.image_url = image_url
 
 
     def serialize(self):
@@ -75,7 +80,8 @@ class Field(db.Model):
             "id": self.id,
             "type": self.type.value,
             "number_of_field": self.number_of_field,
-            "description": self.description
+            "description": self.description,
+            "photo": self.image_url
             # do not serialize the password, its a security breach
         }
     

@@ -10,7 +10,7 @@ export const CanchasHome = (props) => {
 
                 <div className="row my-5">
                     <div className="col-6">
-                        <img src="https://civideportes.com.co/wp-content/uploads/2020/08/asphalt-tennis-court-5354328_640.jpg" alt="cancha de cemento azul" style={{maxWidth: "70%"}}/>
+                        <img src={props.image} alt="cancha de cemento azul" style={{maxWidth: "70%"}}/>
                     </div>
                     <div className="col-6">
                         <h4 style={{textDecoration: "underline"}}>Cancha de {" "}{props.type}</h4>
@@ -45,6 +45,7 @@ CanchasHome.protoTypes = {
     number_of_field: PropTypes.number,
     description: PropTypes.string,
     item: PropTypes.object,
+    image:PropTypes.string
 
 
 }

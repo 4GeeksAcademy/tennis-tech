@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types"
 
 export const TeacherCard = (props) => {
+    console.log(props)
     return(
         <>
            

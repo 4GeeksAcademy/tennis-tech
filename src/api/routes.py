@@ -131,9 +131,11 @@ def create_instructor():
         return jsonify({"message": "Error, asegúrate de enviar 'years_of_experience' en el body"}), 400
     if "description" not in body:
         return jsonify({"message": "Error, asegúrate de enviar 'description' en el body"}), 400
+    if "image" not in body:
+        return jsonify({ "message": "Error, asegúrate de enviar 'image' en el body"}), 400
     
     try:
-        nuevo_instructor = Instructor(body['name'], body['last_name'], body['years_of_experience'], body['description'])
+        nuevo_instructor = Instructor(body['name'], body['last_name'], body['years_of_experience'], body['description'], body['image'])
         db.session.add(nuevo_instructor)
         db.session.commit()
         return jsonify(nuevo_instructor.serialize()), 200
@@ -159,9 +161,11 @@ def create_field():
         return jsonify({"message": "Error, asegúrate de enviar 'number_of_field' en el body"}), 400
     if "description" not in body:
         return jsonify({"message": "Error, asegúrate de enviar 'description' en el body"}), 400
+    if "image" not in body:
+        return jsonify({ "message": "Error, asegúrate de enviar 'image' en el body"}), 400
     
     try:
-        nuevo_field = Field(body['type'], body['number_of_field'], body['description'])
+        nuevo_field = Field(body['type'], body['number_of_field'], body['description'], body['image'])
         db.session.add(nuevo_field)
         db.session.commit()
         return jsonify(nuevo_field.serialize()), 200
