@@ -13,7 +13,13 @@ export const Profile = () =>{
                 <div className="row">
                     <div className="mb-3">
                         <label for="formFile" className="form-label">Inserte su foto de perfil</label>
-                        <input className="form-control" type="file" id="formFile"/>
+                        <input className="form-control" type="file" accept="image/*" id="formFile"
+                        onChange={(evt) => {
+
+                            console.log(evt.target.files)
+
+                            setProfile({ ...profile, photo: evt.target.files[0] })
+                        }}/>
                     </div>
                 </div>
 

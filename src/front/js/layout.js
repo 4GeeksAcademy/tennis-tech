@@ -16,10 +16,7 @@ import { Canchas } from "./pages/reservaCanchas"
 import { Profile } from "./pages/profile";
 import { LessonForm } from "./pages/clases";
 import { Reservations } from "./pages/reservations";
-<<<<<<< HEAD
 // import { ForgotPassword } from "./pages/forgotPassword";
-=======
->>>>>>> 1b5843a59eefba8aa299a7a1031108b649f5882f
 
 //create your first component
 const Layout = () => {
@@ -42,10 +39,7 @@ const Layout = () => {
                             <Route element={<Profile />} path="/profile" />
                             <Route element={<LessonForm />} path="/lessons" />
                             <Route element={<Canchas />} path="/canchas" />
-<<<<<<< HEAD
                             <Route element={<Reservations />} path="/reservations" />
-=======
->>>>>>> 1b5843a59eefba8aa299a7a1031108b649f5882f
                             <Route element={<Reservations />} path="/reservations/:id" />
                             {/* <Route element={<ForgotPassword />} path="/forgotpassword" /> */}
                             {/* <Route element={<Demo />} path="/demo" />

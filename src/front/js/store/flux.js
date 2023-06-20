@@ -120,32 +120,82 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				const store = getStore();
 
+				// try{
+				// 	const resp = await fetch(process.env.BACKEND_URL + "/api/profile", {
+				// 		method: "POST", // *GET, POST, PUT, DELETE, etc.
+				// 		mode: "cors", // no-cors, *cors, same-origin
+				// 		//cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+				// 		//credentials: "same-origin", // include, *same-origin, omit
+				// 		headers: {
+				// 			"Content-type": "application/json",
+				// 			"Authorization": "Bearer " + store.token
+				// 			// 'Content-Type': 'application/x-www-form-urlencoded',
+				// 		},
+				// 		//redirect: "follow", // manual, *follow, error
+				// 		//referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+				// 		body: JSON.stringify(
+				// 			newProfile
+				// 		) // body data type must match "Content-Type" header
+				// 	})
+				// 	const data = await resp.json();
+				// 	setStore({ createProfile : data })
+				// 	console.log("profile viene del backend", data)
+				// 	return true;
+
+				// } catch (error) {
+				// 	console.log(error)
+				// }
+
 				try{
+
+				const apiUrl = `https://api.cloudinary.com/v1_1/dqd3blown/image/upload`
+
+				const formMultimedia = new FormData()
+
+				formMultimedia.append("upload_preset", "eja1lk6e")
+				formMultimedia.append("file", newProfile.photo)
+
+				const respMediaBucket = await fetch(apiUrl, {
+					method: "POST", // *GET, POST, PUT, DELETE, etc.
+						//redirect: "follow", // manual, *follow, error
+						//referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+					body: formMultimedia // body data type must match "Content-Type" header
+				})
+
+				const dataCloudinary = await respMediaBucket.json()
+
+					console.log(dataCloudinary)
+
 					const resp = await fetch(process.env.BACKEND_URL + "/api/profile", {
 						method: "POST", // *GET, POST, PUT, DELETE, etc.
 						mode: "cors", // no-cors, *cors, same-origin
 						//cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
 						//credentials: "same-origin", // include, *same-origin, omit
 						headers: {
-							"Content-type": "application/json",
+							"Content-Type": "application/json",
 							"Authorization": "Bearer " + store.token
 							// 'Content-Type': 'application/x-www-form-urlencoded',
 						},
 						//redirect: "follow", // manual, *follow, error
 						//referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-						body: JSON.stringify(
-							newProfile
-						) // body data type must match "Content-Type" header
-					})
-					const data = await resp.json();
-					setStore({ createProfile : data })
-					console.log("profile viene del backend", data)
-					return true;
+						body: JSON.stringify({
+							"name": newProfile.name,
+							"last_name": newProfile.last_name,
+							"date_of_birth": newProfile.date_of_birth,
+							"category": newProfile.category,
+							"gender": newProfile.gender,
+							"image": dataCloudinary.url
 
-				} catch (error) {
+						}) // body data type must match "Content-Type" header
+					})
+				
+					const data = await resp.json();
+					console.log(data)
+				} catch (error){
 					console.log(error)
 				}
 			},
+		
 
 			getUsers: async () => {
 
@@ -381,7 +431,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 						//credentials: "same-origin", // include, *same-origin, omit
 						headers: {
 							//"Content-Type": "application/json",
-							"Authorization": "Bearer " + store.token
+							"Authorization": "Bearer " + store.token,
+							'Access-Control-Allow-Origin': "*",
 							// 'Content-Type': 'application/x-www-form-urlencoded',
 						},
 						//redirect: "follow", // manual, *follow, error

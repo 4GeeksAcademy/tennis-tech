@@ -11,8 +11,8 @@ export const Signup = () => {
     const navigate = useNavigate()
 
     const handleAddUser = async () =>{
-        let emailInput = document.getElementById('user-email')
-        let validEmail =  /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/
+        // let emailInput = document.getElementById('user-email')
+        // let validEmail =  /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/
         // if( validEmail.test(emailInput.value) ){
         //     // alert('Email is valid, continue with form submission');
         //     setEmailVerified(true)
@@ -22,7 +22,7 @@ export const Signup = () => {
         // }
         let pass1 = document.getElementById('pass1')
         let pass2 = document.getElementById('pass2')
-        if(pass1.value != pass2.value || validEmail.test(emailInput.value) == false) {
+        if(pass1.value != pass2.value) {
             setinputVerified(false) // validacion para comprobar que los campos contraseña y confirmar contraseña son iguales
         } 
         else {

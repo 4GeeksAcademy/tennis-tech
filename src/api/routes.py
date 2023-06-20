@@ -91,6 +91,8 @@ def create_profile():
         return jsonify({"message": "Error, asegúrate de enviar 'category' en el body"}), 400
     if "gender" not in body:
         return jsonify({"message": "Error, asegúrate de enviar 'gender' en el body"}), 400
+    if "image" not in body:
+        return jsonify({ "message": "Error, asegúrate de enviar 'image' en el body"}), 400
     
     username = get_jwt_identity()
     user = User.query.filter_by(username=username).one_or_none()
@@ -99,7 +101,7 @@ def create_profile():
     if user == None:
             return "Ese usuario no existe", 404
     else:
-        nuevo_profile = Profile(body['name'], body['last_name'], body['date_of_birth'], body['category'], body['gender'], user.id)
+        nuevo_profile = Profile(body['name'], body['last_name'], body['date_of_birth'], body['category'], body['gender'], user.id, body['image'])
         db.session.add(nuevo_profile)
     try:
         db.session.commit()
@@ -264,6 +266,7 @@ def create_reservation_field():
         return jsonify({"message": "Error, asegúrate de enviar 'number_of_players' en el body"}), 400
     if "field_id" not in body:
         return jsonify({"message": "Error, asegúrate de enviar 'field_id' en el body"}), 400
+
     
     username = get_jwt_identity()
     user = User.query.filter_by(username=username).one_or_none()
