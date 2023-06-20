@@ -15,9 +15,6 @@ export const Home = () => {
 	useEffect(() => {
 		if(store.token && store.token != "" && store.token != undefined) {
 			actions.getMessage();
-			
-			// actions.getClassesReservations()
-			// actions.getFieldReservations()
 			actions.getProfiles()
 			actions.getUsers()
 		} 
@@ -38,7 +35,21 @@ export const Home = () => {
 		<>
 			<ReservasHome/>
 			<InstructorsHome/>
-			<CanchasHome/>
+			{
+				store.fields.map((field, index) => (
+					<CanchasHome
+						type={field.type}
+						number_of_field={field.number_of_field}
+						description={field.description}
+						item={field}
+						key={index}
+
+					/>
+				))
+
+			}
+			
+			
 		</>
 	);
 };

@@ -1,11 +1,19 @@
 import React, { useContext } from "react";
 import "../../styles/navbar.css";
 import { Context } from "../store/appContext"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export const Navbar = () => {
 
 	const { store, actions } = useContext(Context);
+	const navigate = useNavigate()
+
+	const handleLogOut = async () => {
+		 actions.logout()
+		
+		 navigate("/login")
+				
+	}
 
 	return (
 		<nav className="navbar bg-success">
@@ -45,7 +53,7 @@ export const Navbar = () => {
 								</Link>
 							</ul>
 						</div>
-						<button onClick={() => actions.logout()} className="btn btn-light">Log out</button>
+						<button onClick={handleLogOut} className="btn btn-light">Log out</button>
 					</>
 					}
 					

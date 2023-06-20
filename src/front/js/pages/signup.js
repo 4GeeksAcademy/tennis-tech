@@ -5,17 +5,28 @@ import {Context} from "../store/appContext.js"
 export const Signup = () => {
 
     const [user, setUser] = useState({})
-    const [isEqual, setIsEqual] = useState(true)
+    const [inputVerified, setinputVerified] = useState(true)
     // const [success, setSuccess] = useState(false)
     const {actions} = useContext(Context)
     const navigate = useNavigate()
 
     const handleAddUser = async () =>{
+        let emailInput = document.getElementById('user-email')
+        let validEmail =  /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/
+        // if( validEmail.test(emailInput.value) ){
+        //     // alert('Email is valid, continue with form submission');
+        //     setEmailVerified(true)
+        // }else{
+        //     // alert('Email is invalid, skip form submission');
+        //     setEmailVerified(false)
+        // }
         let pass1 = document.getElementById('pass1')
         let pass2 = document.getElementById('pass2')
-        if(pass1.value != pass2.value) setIsEqual(false) // validacion para comprobar que los campos contraseña y confirmar contraseña son iguales
+        if(pass1.value != pass2.value || validEmail.test(emailInput.value) == false) {
+            setinputVerified(false) // validacion para comprobar que los campos contraseña y confirmar contraseña son iguales
+        } 
         else {
-            setIsEqual(true)
+            setinputVerified(true)
             let response = await actions.addNewUser(user)
             if(response){
                 navigate("/login")
@@ -29,7 +40,7 @@ export const Signup = () => {
         <>
             <div className="container position relative">
                 {
-                    !isEqual && <div className="alert alert-danger" role="alert">Las contraseñas no coinciden! Por favor vuelva a intentar</div>
+                    !inputVerified && <div className="alert alert-danger" role="alert">Las contraseñas no coinciden! o el email ingresado es invalido. Por favor vuelva a intentar</div>
                 }
 
                 <div className="card position-absolute top-50 start-50 translate-middle" style={{width: "500px", backgroundColor: "#74B72D"}}>
