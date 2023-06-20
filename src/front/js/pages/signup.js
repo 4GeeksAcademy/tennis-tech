@@ -38,7 +38,7 @@ export const Signup = () => {
                         <div className="input-group mb-3">
                             <input type="text" onChange={(event) => setUser({...user, username: event.target.value})} value={user.username || ''} className="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1"/>
                         </div>
-                        <div className="input-group mb-3">
+                        <div className="input-group mb-3" >
                             <input type="email" onChange={(event) => setUser({...user, email: event.target.value})} value={user.email || ''} className="form-control" placeholder="Email" aria-label="Email" aria-describedby="basic-addon1"/>
                         </div>
                         <div className="input-group mb-3">
