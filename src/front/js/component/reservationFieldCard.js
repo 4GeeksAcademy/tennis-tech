@@ -14,7 +14,7 @@ export const ReservationFieldCard = (props) =>{
                     Details
                 </div>
                 <div className="card-body">
-                    <p className="card-text text-start">Date: {" "} {props.date}</p>
+                    <p className="card-text text-start">Date: {" "} {props.date.slice(0,16)}</p>
                     <p className="card-text text-start">Time:{" "} {props.hour} </p>
                     <p className="card-text text-start">Number of Players:{" "} {props.number_of_players} </p>
                     <p className="card-text text-start">Field:{" "}{props.field} </p>

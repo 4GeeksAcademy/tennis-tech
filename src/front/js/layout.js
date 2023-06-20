@@ -16,7 +16,6 @@ import { Canchas } from "./pages/reservaCanchas"
 import { Profile } from "./pages/profile";
 import { LessonForm } from "./pages/clases";
 import { Reservations } from "./pages/reservations";
-// import { ForgotPassword } from "./pages/forgotPassword";
 
 //create your first component
 const Layout = () => {
