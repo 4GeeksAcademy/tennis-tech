@@ -31,7 +31,7 @@ export const Login = () => {
         <div className="fondo-login">
             <div className="container">
                 {
-                    !validateCredentials && <div className="alert alert-danger" role="alert">Credenciales invalidas, por favor vuelva a intentar</div>
+                    !validateCredentials && <div id="alert-login" className="alert alert-danger" role="alert">Credenciales invalidas, por favor vuelva a intentar</div>
                 }
                 <div className="card position-absolute top-50 start-50 translate-middle" style={{width: "500px", backgroundColor: "#74B72D"}}>
                     <h2 className="card-header text-light text-center">Welcome</h2>
