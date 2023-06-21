@@ -187,7 +187,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 							"date_of_birth": newProfile.date_of_birth,
 							"category": newProfile.category,
 							"gender": newProfile.gender,
-							"image": dataCloudinary.url
+							"photo": dataCloudinary.url
 
 						}) // body data type must match "Content-Type" header
 					})

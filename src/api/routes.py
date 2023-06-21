@@ -87,19 +87,6 @@ def get_user(id):
 @jwt_required()
 def create_profile():
     body = request.json
-
-    if "name" not in body:
-        return jsonify({"message": "Error, asegúrate de enviar 'name' en el body"}), 400
-    if "last_name" not in body:
-        return jsonify({"message": "Error, asegúrate de enviar 'last_name' en el body"}), 400
-    if "date_of_birth" not in body:
-        return jsonify({"message": "Error, asegúrate de enviar 'date_of_birth' en el body"}), 400
-    if "category" not in body:
-        return jsonify({"message": "Error, asegúrate de enviar 'category' en el body"}), 400
-    if "gender" not in body:
-        return jsonify({"message": "Error, asegúrate de enviar 'gender' en el body"}), 400
-    if "image" not in body:
-        return jsonify({ "message": "Error, asegúrate de enviar 'image' en el body"}), 400
     
     username = get_jwt_identity()
     user = User.query.filter_by(username=username).one_or_none()
@@ -114,13 +101,18 @@ def create_profile():
         if search_profile == None:
             return jsonify({ "message": "No se ha encontrado profile para este usuario"}), 404
         
-        search_profile.name = body["name"]
-        search_profile.last_name = body["last_name"]
-        search_profile.date_of_birth = body["date_of_birth"]
-        search_profile.category = body["category"]
-        search_profile.gender = body["gender"]
-        search_profile.image = body["image"]
-        #nuevo_profile = Profile(body['name'], body['last_name'], body['date_of_birth'], body['category'], body['gender'], user.id, body['image'])
+        if "name" in body:
+            search_profile.name = body["name"]
+        if "last_name" in body:
+            search_profile.last_name = body["last_name"]
+        if "date_of_birth" in body:
+            search_profile.date_of_birth = body["date_of_birth"]
+        if "category" in body:
+            search_profile.category = body["category"]
+        if "gender" in body:
+            search_profile.gender = body["gender"]
+        if "photo" in body:
+            search_profile.image_url = body["photo"]
         
     try:
         db.session.commit()

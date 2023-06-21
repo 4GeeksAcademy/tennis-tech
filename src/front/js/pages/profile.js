@@ -18,6 +18,12 @@ export const Profile = () =>{
         <>
             <h2 className="text-center">Actualiza tu perfil de usuario</h2>
             <div className="container">
+
+                {
+                    store.userProfile?.photo &&
+                    <img src={store.userProfile.photo} alt={store.userProfile.id} />
+                }
+
                 <div className="row">
                     <div className="mb-3">
                         <label htmlFor="formFile" className="form-label">Inserte su foto de perfil</label>
