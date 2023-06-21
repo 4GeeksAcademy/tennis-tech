@@ -40,7 +40,7 @@ export const Navbar = () => {
 								Action
 							</button>
 							<ul className="dropdown-menu">
-								<Link to="/profile" style={{textDecoration: "none"}}>
+								<Link to={"/profile/"+store.userLoggedIn?.id} style={{textDecoration: "none"}}>
 									<li className="dropdown-item">My profile</li>
 								</Link>
 								

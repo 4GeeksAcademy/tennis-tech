@@ -26,6 +26,7 @@ class User(db.Model):
             "id": self.id,
             "username": self.username,
             "email": self.email,
+            #"profile_id": self.profile.id
             # do not serialize the password, its a security breach
         }
     
@@ -106,7 +107,7 @@ class Profile (db.Model):
     category = db.Column(Enum(type_category), nullable=False)
     gender = db.Column(Enum(type_gender), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id')) 
-    user = db.relationship('User')
+    user = db.relationship('User', backref='profile')
     image_url = db.Column(db.String(480), nullable=False)
 
     def __init__(self, name, last_name, date_of_birth, category, gender, user_id, image_url):
@@ -128,6 +129,14 @@ class Profile (db.Model):
             "gender": self.gender.value,
             "user": self.user.serialize() if self.user != None else 'No user',
             "photo": self.image_url
+            # do not serialize the password, its a security breach
+        }
+    
+    def serialize_basic(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "last_name": self.last_name
             # do not serialize the password, its a security breach
         }
     

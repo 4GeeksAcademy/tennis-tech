@@ -9,6 +9,7 @@ from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
+import datetime
 
 api = Blueprint('api', __name__)
 
@@ -53,6 +54,12 @@ def register():
         nuevo_user = User(body['username'], body['email'], hashed_password)
         db.session.add(nuevo_user)
         db.session.commit()
+
+        nuevo_profile = Profile('', '', datetime.datetime.today() , 'primera', 'neutral', nuevo_user.id, '')
+        
+        db.session.add(nuevo_profile)
+        db.session.commit()
+
         return jsonify(nuevo_user.serialize()), 200
     except Exception as err:
         return jsonify({"message": err}), 500
@@ -76,23 +83,10 @@ def get_user(id):
 
     
 
-@api.route('/profile', methods=['POST']) 
+@api.route('/profile', methods=['PUT']) 
 @jwt_required()
 def create_profile():
     body = request.json
-
-    if "name" not in body:
-        return jsonify({"message": "Error, asegúrate de enviar 'name' en el body"}), 400
-    if "last_name" not in body:
-        return jsonify({"message": "Error, asegúrate de enviar 'last_name' en el body"}), 400
-    if "date_of_birth" not in body:
-        return jsonify({"message": "Error, asegúrate de enviar 'date_of_birth' en el body"}), 400
-    if "category" not in body:
-        return jsonify({"message": "Error, asegúrate de enviar 'category' en el body"}), 400
-    if "gender" not in body:
-        return jsonify({"message": "Error, asegúrate de enviar 'gender' en el body"}), 400
-    if "image" not in body:
-        return jsonify({ "message": "Error, asegúrate de enviar 'image' en el body"}), 400
     
     username = get_jwt_identity()
     user = User.query.filter_by(username=username).one_or_none()
@@ -101,13 +95,30 @@ def create_profile():
     if user == None:
             return "Ese usuario no existe", 404
     else:
-        nuevo_profile = Profile(body['name'], body['last_name'], body['date_of_birth'], body['category'], body['gender'], user.id, body['image'])
-        db.session.add(nuevo_profile)
+
+        search_profile = Profile.query.filter_by(user_id=user.id).one_or_none()
+
+        if search_profile == None:
+            return jsonify({ "message": "No se ha encontrado profile para este usuario"}), 404
+        
+        if "name" in body:
+            search_profile.name = body["name"]
+        if "last_name" in body:
+            search_profile.last_name = body["last_name"]
+        if "date_of_birth" in body:
+            search_profile.date_of_birth = body["date_of_birth"]
+        if "category" in body:
+            search_profile.category = body["category"]
+        if "gender" in body:
+            search_profile.gender = body["gender"]
+        if "photo" in body:
+            search_profile.image_url = body["photo"]
+        
     try:
         db.session.commit()
-        return jsonify(nuevo_profile.serialize()), 200
+        return jsonify(search_profile.serialize()), 200
     except Exception as err:
-        return jsonify({"message": err.args}), 400 
+        return jsonify({"message": err}), 400 
     
 
 @api.route('/profiles', methods=['GET'])
@@ -117,6 +128,14 @@ def get_all_profiles():
         return jsonify([profile.serialize() for profile in all_profiles]), 200
     else:
         return jsonify({"message": "Profiles not found"}), 404
+    
+@api.route('/profiles/<int:id>', methods=['GET'])
+def get_profile(id):
+    profile =  Profile.query.filter_by(user_id=id).one_or_none()
+    if profile is not None:
+        return jsonify(profile.serialize()), 200
+    else:
+        return jsonify({"message": "user not found"}), 404   
     
 
 @api.route('/instructor', methods=['POST'])
