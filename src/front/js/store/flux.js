@@ -445,7 +445,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const data = await resp.json()
 					setStore({ userProfile : data })
 					// don't forget to return something, that is how the async resolves
-					console.log(store.profiles)
+					console.log(store.userProfile)
 				} catch (error) {
 					console.log("Error loading message from backend", error)
 				}
