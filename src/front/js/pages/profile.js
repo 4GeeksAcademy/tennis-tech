@@ -9,7 +9,7 @@ export const Profile = () =>{
     const { store , actions} = useContext(Context)
 
     useEffect(()=>{
-
+        actions.getProfiles()
         actions.getProfileByUserId(user_id)
 
     },[])
@@ -79,7 +79,7 @@ export const Profile = () =>{
                     <div className="col-4">
                         <div className="input-group mb-3 flex-column">
                             <label htmlFor="formFile" className="form-label">Category: </label>
-                            <select id="inputState" className="form-select" onChange={(event) => setProfile({...profile, category: event.target.value})} value={ store.userProfile?.category || profile.category || ''} style={{width: "100%"}}>
+                            <select id="inputState" className="form-select" onChange={(event) => setProfile({...profile, category: event.target.value})} value={ profile.category || ''} style={{width: "100%"}}>
                                 <option>Please select your category</option>
                                 <option>primera</option>
                                 <option>segunda</option>
@@ -94,7 +94,7 @@ export const Profile = () =>{
                     <div className="col-4">
                         <div className="input-group mb-3 flex-column">
                             <label htmlFor="formFile" className="form-label">Gender: </label>
-                            <select id="gender" className="form-select" onChange={(event) => setProfile({...profile, gender: event.target.value})} value={ store.userProfile?.gender || profile.gender || ''} style={{width: "100%"}}>
+                            <select id="gender" className="form-select" onChange={(event) => setProfile({...profile, gender: event.target.value})} value={ profile.gender || ''} style={{width: "100%"}}>
                                 <option>Please select your gender</option>
                                 <option>male</option>
                                 <option>female</option>
