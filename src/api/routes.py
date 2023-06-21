@@ -137,6 +137,14 @@ def get_all_profiles():
     else:
         return jsonify({"message": "Profiles not found"}), 404
     
+@api.route('/profiles/<int:id>', methods=['GET'])
+def get_profile(id):
+    profile =  Profile.query.filter_by(user_id=id).one_or_none()
+    if profile is not None:
+        return jsonify(profile.serialize()), 200
+    else:
+        return jsonify({"message": "user not found"}), 404   
+    
 
 @api.route('/instructor', methods=['POST'])
 def create_instructor():

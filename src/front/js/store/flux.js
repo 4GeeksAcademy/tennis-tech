@@ -4,6 +4,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			token: null,
 			message: null,
 			users: [],
+
+			userProfile: null,
+
 			userLoggedIn: {},
 			instructors: [],
 			fieldReservation: [],
@@ -440,9 +443,35 @@ const getState = ({ getStore, getActions, setStore }) => {
 						//body: JSON.stringify(credentials) // body data type must match "Content-Type" header
 					})
 					const data = await resp.json()
-					setStore({ profiles : data })
+					setStore({ userProfile : data })
 					// don't forget to return something, that is how the async resolves
 					console.log(store.profiles)
+				} catch (error) {
+					console.log("Error loading message from backend", error)
+				}
+			},
+
+			getProfileByUserId: async (id) => {
+
+				const store = getStore()
+				try {
+					const resp = await fetch(process.env.BACKEND_URL + "/api/profiles/" + id , {
+						method: "GET", // *GET, POST, PUT, DELETE, etc.
+						mode: "cors", // no-cors, *cors, same-origin
+						//cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+						//credentials: "same-origin", // include, *same-origin, omit
+						headers: {
+							//"Content-Type": "application/json",
+							"Authorization": "Bearer " + store.token,
+							'Access-Control-Allow-Origin': "*",
+							// 'Content-Type': 'application/x-www-form-urlencoded',
+						},
+						//redirect: "follow", // manual, *follow, error
+						//referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+						//body: JSON.stringify(credentials) // body data type must match "Content-Type" header
+					})
+					const data = await resp.json()
+					setStore({ userProfile : data })
 				} catch (error) {
 					console.log("Error loading message from backend", error)
 				}
