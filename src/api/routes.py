@@ -9,6 +9,7 @@ from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
+import datetime
 
 api = Blueprint('api', __name__)
 
@@ -53,6 +54,12 @@ def register():
         nuevo_user = User(body['username'], body['email'], hashed_password)
         db.session.add(nuevo_user)
         db.session.commit()
+
+        nuevo_profile = Profile('', '', datetime.datetime.today() , 'primera', 'neutral', nuevo_user.id, '')
+        
+        db.session.add(nuevo_profile)
+        db.session.commit()
+
         return jsonify(nuevo_user.serialize()), 200
     except Exception as err:
         return jsonify({"message": err}), 500
@@ -76,7 +83,7 @@ def get_user(id):
 
     
 
-@api.route('/profile', methods=['POST']) 
+@api.route('/profile', methods=['PUT']) 
 @jwt_required()
 def create_profile():
     body = request.json
@@ -101,13 +108,25 @@ def create_profile():
     if user == None:
             return "Ese usuario no existe", 404
     else:
-        nuevo_profile = Profile(body['name'], body['last_name'], body['date_of_birth'], body['category'], body['gender'], user.id, body['image'])
-        db.session.add(nuevo_profile)
+
+        search_profile = Profile.query.filter_by(user_id=user.id).one_or_none()
+
+        if search_profile == None:
+            return jsonify({ "message": "No se ha encontrado profile para este usuario"}), 404
+        
+        search_profile.name = body["name"]
+        search_profile.last_name = body["last_name"]
+        search_profile.date_of_birth = body["date_of_birth"]
+        search_profile.category = body["category"]
+        search_profile.gender = body["gender"]
+        search_profile.image = body["image"]
+        #nuevo_profile = Profile(body['name'], body['last_name'], body['date_of_birth'], body['category'], body['gender'], user.id, body['image'])
+        
     try:
         db.session.commit()
-        return jsonify(nuevo_profile.serialize()), 200
+        return jsonify(search_profile.serialize()), 200
     except Exception as err:
-        return jsonify({"message": err.args}), 400 
+        return jsonify({"message": err}), 400 
     
 
 @api.route('/profiles', methods=['GET'])
