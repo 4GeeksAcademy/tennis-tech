@@ -1,6 +1,6 @@
 import React, {useState, useContext, useEffect} from "react";
 import {Context} from "../store/appContext"
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 export const Profile = () =>{
 
@@ -18,11 +18,6 @@ export const Profile = () =>{
         <>
             <h2 className="text-center">Actualiza tu perfil de usuario</h2>
             <div className="container">
-
-                {
-                    store.userProfile?.photo &&
-                    <img src={store.userProfile.photo} alt={store.userProfile.id} />
-                }
 
                 <div className="row">
                     <div className="mb-3">
@@ -117,8 +112,12 @@ export const Profile = () =>{
                 </div> */}
 
                 <div className="row">
-                    <div className="col-12 mb-3 d-flex">
-                        <button className="btn btn-primary mx-auto" onClick={() => actions.createProfile(profile) } style={{width: "50%"}}>Save your changes</button>
+                    <div className="col-12 mb-3 d-flex justify-content-around">
+                        <button className="btn btn-warning" onClick={() => actions.createProfile(profile) } style={{width: "25%"}}>Save your changes</button>
+                        <Link to={"/exploreProfile/"+store.userLoggedIn?.id} style={{textDecoration: "none", width: "25%"}}>
+                            <button type="button" class="btn btn-info">View your profile</button>
+                        </Link>
+                        
                     </div>
 
                 </div>

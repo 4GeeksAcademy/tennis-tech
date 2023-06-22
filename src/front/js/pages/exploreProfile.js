@@ -1,23 +1,50 @@
-import React from 'react'
+import React, {useState, useContext, useEffect} from "react";
+import {Context} from "../store/appContext"
+import { useParams } from "react-router-dom";
 import "../../styles/exploreProfile.css";
-import { Context } from "../store/appContext"
 
 export const ExploreProfile = () =>{
 
+    const { user_id } = useParams()
+    const { store , actions} = useContext(Context)
+
+    useEffect(()=>{
+        
+        actions.getProfileByUserId(user_id)
+
+    },[])
 
     return(
         <>
         <h1 className='text-center pb-5 mb-5 mt-5'>This is your profile!</h1>
         <div className='row margen'>
             <div className='col-6'>
-        <img className='profilePicture rounded-circle' src="https://res.cloudinary.com/dqd3blown/image/upload/v1687301560/Shane-C.-Home-Page-1024x732_rvdros.jpg"></img>
+            {
+                store.userProfile?.photo &&
+                <img className='profilePicture rounded-circle' src={store.userProfile.photo} alt={store.userProfile.id} />
+            }
         </div>
         <div className='col-6 d-flex flex-column justify-content-between'>
-        <h4 className=''>Name:</h4>
-        <h4 className=''>Last Name:</h4>
-        <h4 className=''>Date of birth:</h4>
-        <h4 className=''>Category:</h4>
-        <h4 className=''>Gender:</h4>
+            {
+                store.userProfile?.name &&
+                <h4>Name: {" "} {store.userProfile.name} </h4>
+            }
+            {
+              store.userProfile?.last_name &&
+              <h4>Last Name:{" "} {store.userProfile.last_name} </h4>  
+            }
+            {
+               store.userProfile?.date_of_birth &&
+               <h4>Date of Birth: {" "} {store.userProfile.date_of_birth.slice(0,16)} </h4>  
+            }
+            {
+                store.userProfile?.category &&
+                <h4>Category: {" "} {store.userProfile.category} </h4> 
+            }
+            {
+                store.userProfile?.gender &&
+                <h4>Gender: {" "} {store.userProfile.gender} </h4>
+            }
         </div>
         </div>
         </>
