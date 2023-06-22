@@ -26,17 +26,17 @@ export const Navbar = () => {
 					{ !store.token ?
 					<>
 						<Link to="/login">
-							<button className="btn btn-light me-2">Log in</button>
+							<button className="btn btn-light me-2" style={{width: "100px", height: "100%"}}>Log in</button>
 
 						</Link>
 						<Link to="/signup">
-							<button className="btn btn-light">Sign Up</button>
+							<button className="btn btn-light" style={{width: "100px", height: "100%"}}>Sign Up</button>
 						</Link>
 					</>
 					:
 					<>
 						<div className="btn-group">
-							<button type="button" className="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+							<button type="button" className="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style={{marginRight: "20px"}}>
 								Action
 							</button>
 							<ul className="dropdown-menu">
