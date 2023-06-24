@@ -118,12 +118,13 @@ export const Profile = () =>{
                 </div> */}
 
                 <div className="row ms-5 me-5">
-                    <div className="col-12 mb-3 d-flex justify-content-evenly">
-                        <button className="btn btn-warning" onClick={() => actions.createProfile(profile) } style={{width: "25%"}}>Save your changes</button>
+                    <div className="col-6">
+                        <button className="btn btn-warning" onClick={() => actions.createProfile(profile) } style={{width: "100%"}}>Save your changes</button>
+                    </div>
+                    <div className="col-6">
                         <Link to={"/exploreProfile/"+store.userLoggedIn?.id} style={{textDecoration: "none", width: "25%"}}>
-                            <button type="button" class="btn btn-info">View your profile</button>
+                            <button type="button" class="btn btn-info" style={{width: "100%"}}>View your profile</button>
                         </Link>
-                        
                     </div>
 
                 </div>
