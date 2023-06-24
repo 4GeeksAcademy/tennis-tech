@@ -16,15 +16,17 @@ export const ExploreProfile = () =>{
 
     return(
         <>
+        <div className="col-xs-4 col-sm-8 col-md-12">
         <h1 className='text-center pb-5 mb-5 mt-5'>This is your profile!</h1>
-        <div className='row margen'>
-            <div className='col-6'>
+        </div>
+        <div className='row'>
+            <div className='col-xs-12 col-sm-12 col-md-6'>
             {
                 store.userProfile?.photo &&
                 <img className='profilePicture rounded-circle' src={store.userProfile.photo} alt={store.userProfile.id} />
             }
         </div>
-        <div className='col-6 d-flex flex-column justify-content-between textoName'>
+        <div className='col-xs-12 col-sm-12 col-md-6 textoName'>
             {
                 store.userProfile?.name &&
                 <p> <strong>Name:</strong> {" "} {store.userProfile.name} </p>
