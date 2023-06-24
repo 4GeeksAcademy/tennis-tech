@@ -1,6 +1,8 @@
 import React, {useState, useContext} from "react";
 import {useNavigate} from "react-router-dom";
 import {Context} from "../store/appContext.js"
+import "../../styles/signup.css";
+
 
 export const Signup = () => {
 
@@ -38,6 +40,7 @@ export const Signup = () => {
 
     return (
         <>
+            <div className="fondoSignup">
             <div className="container position relative">
                 {
                     !inputVerified && <div className="alert alert-danger" role="alert">Las contraseñas no coinciden! o el email ingresado es invalido. Por favor vuelva a intentar</div>
@@ -61,6 +64,7 @@ export const Signup = () => {
                         <button className="btn btn-primary" onClick={handleAddUser} style={{width: "100%"}}>Join Us</button>
                     </div>
                 </div>
+            </div>
             </div>
         
         </>

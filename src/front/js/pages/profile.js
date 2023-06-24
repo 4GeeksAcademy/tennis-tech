@@ -16,11 +16,17 @@ export const Profile = () =>{
 
     return(
         <>
-            <h2 className="text-center">Actualiza tu perfil de usuario</h2>
-            <div className="container">
+        
+            
+            
+            <div className="row">
+            <div className="col-xs-4 col-sm-8 col-md-12">
+            <h2 className="text-center mt-5">Actualiza tu perfil de usuario</h2>
+            </div>
+            </div>
 
-                <div className="row">
-                    <div className="mb-3">
+                <div className="row ms-5 me-5">
+                    <div className="mb-3 col-xs-12 col-sm-12 col-md-12">
                         <label htmlFor="formFile" className="form-label">Inserte su foto de perfil</label>
                         <input className="form-control" type="file" accept="image/*" id="formFile"
                         onChange={(evt) => {
@@ -32,14 +38,14 @@ export const Profile = () =>{
                     </div>
                 </div>
 
-                <div className="row">
-                    <div className="col-6">
+                <div className="row ms-5 me-5">
+                    <div className="col-xs-12 col-sm-6 col-md-6">
                         <div className="input-group mb-3 flex-column">
                             <label htmlFor="formFile" className="form-label">Name: </label>
                             <input type="text" onChange={(event) => setProfile({...profile, name: event.target.value})} value={profile.name || ''} className="form-control" placeholder={store.userProfile?.name || ''} aria-label="Username" aria-describedby="basic-addon1" style={{width: "100%"}}/>
                         </div>
                     </div>
-                    <div className="col-6">
+                    <div className="col-xs-12 col-sm-6 col-md-6">
                         <div className="input-group mb-3 flex-column">
                             <label htmlFor="formFile" className="form-label">Lastname: </label>
                             <input type="text" onChange={(event) => setProfile({...profile, last_name: event.target.value})} value={profile.last_name || ''} className="form-control" placeholder={store.userProfile?.last_name || ''} aria-label="Username" aria-describedby="basic-addon1" style={{width: "100%"}}/>
@@ -64,14 +70,14 @@ export const Profile = () =>{
 
                 </div> */}
 
-                <div className="row">
-                    <div className="col-4">
+                <div className="row ms-5 me-5">
+                    <div className="col-xs-8 col-sm-4 col-md-4">
                         <div className="input-group mb-3 flex-column">
                             <label htmlFor="formFile" className="form-label">Date of Birth: </label>
                             <input type="date" onChange={(event) => setProfile({...profile, date_of_birth: event.target.value})} value={profile.date_of_birth || ''} className="form-control" placeholder={store.userProfile?.date_of_birth || ''} aria-label="Username" aria-describedby="basic-addon1" style={{width: "100%"}}/>
                         </div>
                     </div>
-                    <div className="col-4">
+                    <div className="col-xs-8 col-sm-4 col-md-4">
                         <div className="input-group mb-3 flex-column">
                             <label htmlFor="formFile" className="form-label">Category: </label>
                             <select id="inputState" className="form-select" onChange={(event) => setProfile({...profile, category: event.target.value})} value={ profile.category || ''} style={{width: "100%"}}>
@@ -86,7 +92,7 @@ export const Profile = () =>{
                             {/* <input type="text" onChange={(event) => setProfile({...profile, category: event.target.value})} value={profile.category || ''} className="form-control" placeholder="Please insert their category" aria-label="Username" aria-describedby="basic-addon1" style={{width: "100%"}}/> */}
                         </div>
                     </div>
-                    <div className="col-4">
+                    <div className="col-xs-8 col-sm-4 col-md-4">
                         <div className="input-group mb-3 flex-column">
                             <label htmlFor="formFile" className="form-label">Gender: </label>
                             <select id="gender" className="form-select" onChange={(event) => setProfile({...profile, gender: event.target.value})} value={ profile.gender || ''} style={{width: "100%"}}>
@@ -111,8 +117,8 @@ export const Profile = () =>{
 
                 </div> */}
 
-                <div className="row">
-                    <div className="col-12 mb-3 d-flex justify-content-around">
+                <div className="row ms-5 me-5">
+                    <div className="col-12 mb-3 d-flex justify-content-evenly">
                         <button className="btn btn-warning" onClick={() => actions.createProfile(profile) } style={{width: "25%"}}>Save your changes</button>
                         <Link to={"/exploreProfile/"+store.userLoggedIn?.id} style={{textDecoration: "none", width: "25%"}}>
                             <button type="button" class="btn btn-info">View your profile</button>
@@ -121,8 +127,6 @@ export const Profile = () =>{
                     </div>
 
                 </div>
-
-            </div>
 
         
         </>

@@ -24,26 +24,26 @@ export const ExploreProfile = () =>{
                 <img className='profilePicture rounded-circle' src={store.userProfile.photo} alt={store.userProfile.id} />
             }
         </div>
-        <div className='col-6 d-flex flex-column justify-content-between'>
+        <div className='col-6 d-flex flex-column justify-content-between textoName'>
             {
                 store.userProfile?.name &&
-                <h4>Name: {" "} {store.userProfile.name} </h4>
+                <p> <strong>Name:</strong> {" "} {store.userProfile.name} </p>
             }
             {
               store.userProfile?.last_name &&
-              <h4>Last Name:{" "} {store.userProfile.last_name} </h4>  
+              <p> <strong>Last Name:</strong>{" "} {store.userProfile.last_name} </p>  
             }
             {
                store.userProfile?.date_of_birth &&
-               <h4>Date of Birth: {" "} {store.userProfile.date_of_birth.slice(0,16)} </h4>  
+               <p> <strong>Date of Birth:</strong> {" "} {store.userProfile.date_of_birth.slice(0,16)} </p>  
             }
             {
                 store.userProfile?.category &&
-                <h4>Category: {" "} {store.userProfile.category} </h4> 
+                <p> <strong>Category:</strong> {" "} {store.userProfile.category} </p> 
             }
             {
                 store.userProfile?.gender &&
-                <h4>Gender: {" "} {store.userProfile.gender} </h4>
+                <p> <strong>Gender:</strong> {" "} {store.userProfile.gender} </p>
             }
         </div>
         </div>
