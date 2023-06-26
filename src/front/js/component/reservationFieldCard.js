@@ -14,10 +14,10 @@ export const ReservationFieldCard = (props) =>{
                     Details
                 </div>
                 <div className="card-body">
-                    <p className="card-text text-start">Date: {" "} {props.date.slice(0,16)}</p>
-                    <p className="card-text text-start">Time:{" "} {props.hour} </p>
-                    <p className="card-text text-start">Number of Players:{" "} {props.number_of_players} </p>
-                    <p className="card-text text-start">Field:{" "}{props.field} </p>
+                    <p className="card-text text-start">Date: {" "} <span className='fw-bold'> {props.date.slice(0,16)} </span> </p>
+                    <p className="card-text text-start">Time:{" "} <span className='fw-bold'>{props.hour}</span> </p>
+                    <p className="card-text text-start">Number of Players:{" "} <span className='fw-bold'>{props.number_of_players}</span></p>
+                    <p className="card-text text-start">Field:{" "} <span className='fw-bold'>{props.field}</span> </p>
                     <button className="btn btn-danger" onClick={() => actions.deleteFieldReservation(props.item, props.item.id)}>Delete</button>
                 </div>
                 <div className="card-footer text-muted">

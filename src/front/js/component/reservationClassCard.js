@@ -13,11 +13,11 @@ export const ReservationClassCard = (props) =>{
                     Details
                 </div>
                 <div className="card-body">
-                    <p className="card-text text-start">Date: {" "} {props.date.slice(0,16)} </p>
-                    <p className="card-text text-start">Time: {" "} {props.hour} </p>
-                    <p className="card-text text-start">Difficulty: {" "}{props.difficulty}</p>
-                    <p className="card-text text-start">Instructor: {" "}{props.instructor_name}{" "}{props.instructor_last_name}</p>
-                    <p className="card-text text-start">Comments: {" "}{props.comments}</p>
+                    <p className="card-text text-start">Date: {" "} <span className='fw-bold'>{props.date.slice(0,16)}</span> </p>
+                    <p className="card-text text-start">Time: {" "} <span className='fw-bold'>{props.hour} </span> </p>
+                    <p className="card-text text-start">Difficulty: {" "}<span className='fw-bold'>{props.difficulty}</span></p>
+                    <p className="card-text text-start">Instructor: {" "}<span className='fw-bold'>{props.instructor_name}{" "}{props.instructor_last_name}</span></p>
+                    <p className="card-text text-start">Comments: {" "}<span className='fw-bold'>{props.comments}</span></p>
                     <button className="btn btn-danger" onClick={() => actions.deleteClassReservation(props.item, props.item.id)}>Delete</button>
                 </div>
                 <div className="card-footer text-muted">
