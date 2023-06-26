@@ -3,7 +3,7 @@ import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import "../../styles/canchas.css";
 import {Context} from "../store/appContext"
-
+import Swal from 'sweetalert2'
 
 export const Canchas = () => {
 
@@ -13,6 +13,15 @@ export const Canchas = () => {
     useEffect(() => {
         actions.getFields()
     }, [])
+
+    const handleFieldReservation = async () =>{
+        let response = await actions.addNewFieldReservation(canchaReservation);
+        if(response){
+            Swal.fire(
+                "Alerta de Reservacion!", "Su reservacion de cancha ha sido exitosa", "success"
+            )
+        }
+    }
 
 
     return(
@@ -55,7 +64,7 @@ export const Canchas = () => {
 
 
 <div className='boton-reservar'>
-<button type="button" className="btn btn-primary" onClick={() => actions.addNewFieldReservation(canchaReservation)}>Reservar</button>
+<button type="button" className="btn btn-primary" onClick={handleFieldReservation}>Reservar</button>
 </div>
 
 </div>

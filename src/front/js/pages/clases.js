@@ -6,18 +6,13 @@ import 'react-time-picker/dist/TimePicker.css';
 import 'react-clock/dist/Clock.css';
 import "react-datepicker/dist/react-datepicker.css";
 import "../../styles/clases.css";
+import Swal from 'sweetalert2'
 
 export const LessonForm = () => {
 
     const { actions, store } = useContext(Context)
     const [classReservation, setClassReservation] = useState({});
 
-    useEffect(() => {
-		if(store.token && store.token != "" && store.token != undefined) {
-			actions.addClassReservation()
-		} 
-	}, 
-	[store.token])
 
     useEffect(() => {
 		actions.getFields()
@@ -34,10 +29,14 @@ export const LessonForm = () => {
         return fields[randomNumber].id;
       }
       
-      function handleClassReservation(){
-        // console.log(generateRandomFieldId(store.fields))
+      async function handleClassReservation(){
         const randomFieldId = generateRandomFieldId(store.fields);
-        actions.addClassReservation({...classReservation, field_id: randomFieldId})
+        let response = actions.addClassReservation({...classReservation, field_id: randomFieldId})
+        if(response){
+            Swal.fire(
+                "Alerta de Reservacion!", "Su reservacion de clase ha sido exitosa", "success"
+            )
+        }
       }
       
 
