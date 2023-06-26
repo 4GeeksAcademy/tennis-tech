@@ -1,6 +1,7 @@
 import React, {useState, useContext, useEffect} from "react";
 import {Context} from "../store/appContext"
 import { useParams, Link } from "react-router-dom";
+import Swal from 'sweetalert2'
 
 export const Profile = () =>{
 
@@ -13,6 +14,15 @@ export const Profile = () =>{
         actions.getProfileByUserId(user_id)
 
     },[])
+
+    const handleProfile = async () =>{
+        let response = actions.createProfile(profile)
+        if(response){
+            Swal.fire(
+                "Perfil actualizado!", "Los cambios en su perfil se han guardado exitosamente", "success"
+            )
+        }
+    }
 
     return(
         <>
@@ -119,7 +129,7 @@ export const Profile = () =>{
 
                 <div className="row ms-5 me-5">
                     <div className="col-6">
-                        <button className="btn btn-warning" onClick={() => actions.createProfile(profile) } style={{width: "100%"}}>Save your changes</button>
+                        <button className="btn btn-warning" onClick={handleProfile} style={{width: "100%"}}>Save your changes</button>
                     </div>
                     <div className="col-6">
                         <Link to={"/exploreProfile/"+store.userLoggedIn?.id} style={{textDecoration: "none", width: "25%"}}>
