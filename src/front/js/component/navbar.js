@@ -36,10 +36,10 @@ export const Navbar = () => {
 					:
 					<>
 						<div className="btn-group">
-							<button type="button" className="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style={{marginRight: "20px"}}>
+							<button type="button" className="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style={{marginRight: "10px", width: "100px", height: "100%"}}>
 								Action
 							</button>
-							<ul className="dropdown-menu">
+							<ul className="dropdown-menu" style={{left: "-25px"}}>
 								<Link to={"/profile/"+store.userLoggedIn?.id} style={{textDecoration: "none"}}>
 									<li className="dropdown-item">My profile</li>
 								</Link>
@@ -53,7 +53,7 @@ export const Navbar = () => {
 								</Link>
 							</ul>
 						</div>
-						<button onClick={handleLogOut} className="btn btn-light">Log out</button>
+						<button onClick={handleLogOut} className="btn btn-light" style={{minWidth: "70%"}}>Log out</button>
 					</>
 					}
 					
