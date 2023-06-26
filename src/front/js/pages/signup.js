@@ -2,13 +2,11 @@ import React, {useState, useContext} from "react";
 import {useNavigate} from "react-router-dom";
 import {Context} from "../store/appContext.js"
 import "../../styles/signup.css";
-
+import Swal from 'sweetalert2'
 
 export const Signup = () => {
 
     const [user, setUser] = useState({})
-    const [inputVerified, setinputVerified] = useState(true)
-    // const [success, setSuccess] = useState(false)
     const {actions} = useContext(Context)
     const navigate = useNavigate()
 
@@ -24,13 +22,18 @@ export const Signup = () => {
         // }
         let pass1 = document.getElementById('pass1')
         let pass2 = document.getElementById('pass2')
-        if(pass1.value != pass2.value) {
-            setinputVerified(false) // validacion para comprobar que los campos contraseña y confirmar contraseña son iguales
+        if(pass1.value != pass2.value) { // validacion para comprobar que los campos contraseña y confirmar contraseña son iguales
+            Swal.fire(
+                "Error!", "Los campos contraseña y confirmar contraseña no coinciden. Por favor vuelva a intentar", "error"
+            )
         } 
         else {
-            setinputVerified(true)
+        
             let response = await actions.addNewUser(user)
             if(response){
+                Swal.fire(
+                    "Bienvenido!", "Usuario registrado con exito", "success"
+                )
                 navigate("/login")
             }
         }
@@ -42,9 +45,6 @@ export const Signup = () => {
         <>
             <div className="fondoSignup">
             <div className="container position relative">
-                {
-                    !inputVerified && <div className="alert alert-danger" role="alert">Las contraseñas no coinciden! o el email ingresado es invalido. Por favor vuelva a intentar</div>
-                }
 
                 <div className="card position-absolute top-50 start-50 translate-middle" style={{width: "500px", backgroundColor: "#74B72D"}}>
                     <h2 className="card-header text-light text-center">Sign Up</h2>

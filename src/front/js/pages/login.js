@@ -2,7 +2,7 @@ import React, {useContext, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {Context} from "../store/appContext";
 import "../../styles/login.css";
-/*import { useHistory } from "react-router-dom"*/
+import Swal from 'sweetalert2'
 
 
 export const Login = () => {
@@ -10,19 +10,18 @@ export const Login = () => {
     
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const[validateCredentials, setValidateCredentials] = useState(true)
-    /*const history = useHistory();*/
     const navigate = useNavigate()
 
     const handleClick = async () => {
         let response = await actions.login(username, password);
         if(response){
-            setValidateCredentials(true)
             navigate("/")
         }
         else{
-            setValidateCredentials(false)
             console.log("Credenciales inválidas")
+            Swal.fire(
+                "Error!", "Credenciales inválidas. Por favor intente de nuevo", "error"
+            )
         }
     }
    
@@ -30,9 +29,6 @@ export const Login = () => {
     return(
         <div className="fondo-login">
             <div className="container">
-                {
-                    !validateCredentials && <div id="alert-login" className="alert alert-danger" role="alert">Credenciales invalidas, por favor vuelva a intentar</div>
-                }
                 <div className="card position-absolute top-50 start-50 translate-middle" style={{width: "500px", backgroundColor: "#74B72D"}}>
                     <h2 className="card-header text-light text-center">Welcome</h2>
                    <div className="card-body">
