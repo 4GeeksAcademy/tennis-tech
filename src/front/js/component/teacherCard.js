@@ -7,7 +7,7 @@ export const TeacherCard = (props) => {
         <>
            
 
-                <div className="card" style={{width: "20rem", height: "30rem"}}>
+                <div className="card" style={{width: "20rem", height: "30rem", marginBottom: "20px", marginTop: "20px"}}>
                     <img src={props.image} style={{height: "50%", objectFit: "cover"}}/>
                     <div className="card-body" style={{fontSize: "18px"}}>
                         <div className="mb-3">
