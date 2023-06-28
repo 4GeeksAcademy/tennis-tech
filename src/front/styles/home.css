@@ -17,6 +17,16 @@
     font-family: 'Quicksand', sans-serif;
     font-size:x-large;
 }
+@media screen and (max-width: 1037px){
+    #instructor-card{
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center;
+        margin-bottom: 10px !important;
+    }
+}
+
+
 
 .tituloCanchas{
     font-family: 'Quicksand', sans-serif;

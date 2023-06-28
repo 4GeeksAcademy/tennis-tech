@@ -2,7 +2,18 @@
     height:400px;
     width: 500px;
     margin-left:20%;
+    display: flex;
+
 } 
+
+@media (max-width: 1200px){
+    .profilePicture{
+        height:300px !important;
+        width: 300px !important;
+        display: flex !important;
+    
+    } 
+}
 
 .textoName{
     font-family: 'Quicksand', sans-serif;
