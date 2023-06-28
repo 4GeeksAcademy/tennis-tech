@@ -12,8 +12,8 @@ export const CanchasHome = (props) => {
                     <div className="col-6">
                         <img src={props.image} alt="cancha de cemento azul" style={{maxWidth: "70%"}}/>
                     </div>
-                    <div className="col-6">
-                        <h4 style={{textDecoration: "underline"}}>Cancha de {" "}{props.type}</h4>
+                    <div className="col-6 textoCanchas">
+                        <h4 className="tituloCanchas" style={{textDecoration: "underline"}}>Cancha de {" "}{props.type}</h4>
                         <p className="text-center">{props.description}</p>
                     </div>
                 </div>

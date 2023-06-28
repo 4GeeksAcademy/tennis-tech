@@ -13,4 +13,12 @@
     align-items: center;
 }
 
+.textoCanchas{
+    font-family: 'Quicksand', sans-serif;
+    font-size:x-large;
+}
 
+.tituloCanchas{
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+}

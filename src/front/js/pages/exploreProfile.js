@@ -17,7 +17,7 @@ export const ExploreProfile = () =>{
     return(
         <>
         <div className="col-xs-4 col-sm-8 col-md-12">
-        <h1 className='text-center pb-5 mb-5 mt-5'>This is your profile!</h1>
+        <h1 className='text-center pb-5 mb-5 mt-5 tituloProfile'>This is your profile!</h1>
         </div>
         <div className='row'>
             <div className='col-xs-12 col-sm-12 col-md-6'>
