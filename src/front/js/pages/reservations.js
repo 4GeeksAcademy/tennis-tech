@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { ReservationFieldCard } from '../component/reservationFieldCard';
 import { ReservationClassCard } from '../component/reservationClassCard';
 import {Context} from "../store/appContext"
+import Swal from 'sweetalert2'
 
 export const Reservations = () =>{
 
@@ -10,13 +11,24 @@ export const Reservations = () =>{
     const {id} = useParams()
 
     useEffect(() => {
-        if(store.token && store.token != "" && store.token != undefined) {
-			actions.getMessage();
-			actions.getClassesReservations(id)
-			actions.getFieldReservations(id)
+        async function reservationHistory(){
 
-			
-		} 
+            if(store.token && store.token != "" && store.token != undefined) {
+                actions.getMessage();
+                let response2 = await actions.getClassesReservations(id)
+                let response3 = await  actions.getFieldReservations(id)
+                if(response2 == true && response3 == true){
+                    if(store.classesReservation.length == 0 && store.fieldReservation.length == 0){
+                        Swal.fire(
+                            "No tienes reservaciones aún", "Dirígete al carrusel en home para programar tus reservas", "error"
+                        )
+                    }
+                }
+    
+                
+            } 
+        }
+        reservationHistory()
     }, [store.token])
 
     return(

@@ -390,6 +390,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					setStore({ classesReservation : data })
 					// don't forget to return something, that is how the async resolves
 					console.log(store.classesReservation)
+					return true
 				} catch (error) {
 					console.log("Error loading message from backend", error)
 				}
@@ -417,6 +418,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					setStore({ fieldReservation : data })
 					// don't forget to return something, that is how the async resolves
 					console.log(store.fieldReservation)
+					return true
 				} catch (error) {
 					console.log("Error loading message from backend", error)
 				}
